@@ -1,44 +1,30 @@
-import axios from 'axios';
-
-async function getData() {
-    try {
-        const res = await axios.get(
-            'https://api.thumuaruouhn.online/LiquorExchange/News/Get-News/1050821045985280',
-            {
-                headers: {
-                    'Accept': 'text/plain',
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-
-        // The return value is *not* serialized
-        // You can return Date, Map, Set, etc.
-        const listSlider = res.data?.data;
-        return listSlider;
-    } catch (error) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error(`There was an error retrieving the data: ${error}`);
-    }
-}
+import Carousel from "@/pages/HomePage/HomeCarousel";
+import HomeIntroduce from "@/pages/HomePage/HomeIntroduce";
+import HomeBestSelling from "@/pages/HomePage/HomeBestSelling";
+import HomeNews from "@/pages/HomePage/HomeNews";
+import HomeBrand from "@/pages/HomePage/HomeBrand";
 
 export async function generateMetadata() {
-    const data = await getData()
     return {
-        title: data.name,
-        description: "hi",
+        title: "RƯỢU DUTY SÂN BAY",
+        description: "Chuyên mua bán rượu",
+        siteName: "RƯỢU DUTY SÂN BAY",
+        url: "https://thumuaruouhn.online/",
+        type: "website",
         openGraph: {
-            images: "https://www.google.com",
+            images: "https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg",
         },
     }
 }
 
 export default async function Home() {
-    const data = await getData()
-    console.log(data.name)
   return (
     <div>
-        {data.name}
+        <Carousel></Carousel>
+        <HomeIntroduce></HomeIntroduce>
+        <HomeBestSelling></HomeBestSelling>
+        <HomeNews></HomeNews>
+        <HomeBrand></HomeBrand>
     </div>
   );
 }
