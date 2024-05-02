@@ -1,10 +1,14 @@
-version: '3.8' # Choose an appropriate version
+version: '3.5'
 
 services:
-  nextjs-app:
-    build: .  # Path to your Dockerfile
+  nextjs-test:
+    container_name: nextjs-test_latest
+    image: nextjs-test_latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Map the host port to container port
+      - "3000:3000"
     volumes:
-      - .:/app # Mount your project code as a volume for development
+      - .:/app
     restart: always
