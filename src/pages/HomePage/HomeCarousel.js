@@ -39,7 +39,7 @@ export default function HomeCarousel() {
         <Carousel autoplay>
             {data.map((s) => {
                 return (
-                    <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=700&width=1920`} className="lg:h-full object-cover" alt={s.name} key={s.id}/>
+                    <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=700&width=1920`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
                 );
             })}
         </Carousel>

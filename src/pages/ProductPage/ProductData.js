@@ -286,7 +286,7 @@ export default function ProductData({slug}) {
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
                             {product?.relatedProduct?.map((product) => (
                                 <a href={`/product/${product?.slug}`} key={product.id} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
-                                    <img className="rounded-xl" src={product?.image} alt=""/>
+                                    <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
                                     <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>
                                     <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                         <div>{product?.bottle}ml</div>
@@ -309,7 +309,7 @@ export default function ProductData({slug}) {
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
                             {matchingProducts?.map((product) => (
                                 <a href={`/product/${product?.slug}`} key={product?.slug} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
-                                    <img className="rounded-xl" src={product?.image} alt=""/>
+                                    <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
                                     <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>
                                     <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                         <div>{product?.bottle}ml</div>

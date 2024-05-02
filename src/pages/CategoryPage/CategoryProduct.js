@@ -23,35 +23,69 @@ function Select({ options, defaultValue, onChange }) {
 
 function Pagination({ total, pageSize, current, onChange }) {
     const totalPages = Math.ceil(total / pageSize);
+    const [visiblePages, setVisiblePages] = useState([]);
+
+    const getVisiblePages = (page) => {
+        let pages = [];
+
+        if (page <= 3) {
+            pages = Array.from({ length: Math.min(5, totalPages) }, (_, i) => i + 1);
+        } else if (page >= totalPages - 2) {
+            pages = Array.from({ length: 5 }, (_, i) => totalPages - 4 + i);
+        } else {
+            pages = [page - 2, page - 1, page, page + 1, page + 2];
+        }
+
+        // Filter out page numbers that are greater than the total number of pages
+        pages = pages.filter(page => page <= totalPages);
+
+        return pages;
+    };
 
     const handleClick = (page) => {
         onChange(page);
+        setVisiblePages(getVisiblePages(page));
     };
+
+    useEffect(() => {
+        setVisiblePages(getVisiblePages(current));
+    }, [current]);
 
     return (
         <div>
-            {[...Array(totalPages).keys()].map((_, index) => {
-                const page = index + 1;
-                return (
-                    <button
-                        key={page}
-                        onClick={() => handleClick(page)}
-                        style={{ fontWeight: page === current ? 'bold' : 'normal' }}
-                    >
-                        {page}
-                    </button>
-                );
-            })}
+            {current > 3 && (
+                <>
+                    <button onClick={() => handleClick(1)}>1</button>
+                    <span>...</span>
+                </>
+            )}
+            {visiblePages.map((page) => (
+                <button
+                    key={page}
+                    onClick={() => handleClick(page)}
+                    className={`border-2 px-3 py-2 mx-1 rounded-lg ${page === current ? 'text-blue-500 border-blue-500' : 'text-gray-500 border-gray-500'}`}
+                    style={{ fontWeight: page === current ? 'bold' : 'normal' }}
+                >
+                    {page}
+                </button>
+            ))}
+            {current < totalPages - 2 && (
+                <>
+                    <span>...</span>
+                    <button onClick={() => handleClick(totalPages)}>{totalPages}</button>
+                </>
+            )}
         </div>
     );
 }
+
 
 export default function CategoryProduct({slug}) {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(30);
     const [sortOption, setSortOption] = useState('asc');
-    const pageSize = 30;
+    const pageSize = 1;
     useEffect(() => {
         axios.post(`https://api.thumuaruouhn.online/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
             pageSize: pageSize,
@@ -106,7 +140,7 @@ export default function CategoryProduct({slug}) {
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-5">
                     {products.map((product) => (
                         <a href={`/product/${product?.slug}`} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
-                            <img className="rounded-xl" src={product?.productImages[0]?.image} alt=""/>
+                            <img className="rounded-xl" src={product?.productImages[0]?.image} alt={product?.name} title={product?.name}/>
                             <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>
                             <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                 <div>{product?.bottle}ml</div>
@@ -118,13 +152,8 @@ export default function CategoryProduct({slug}) {
                     ))}
                 </div>
                 <div className="text-right">
-                    {total > currentPage * pageSize ? (
-                            <Pagination
-                                total={total}
-                                pageSize={pageSize}
-                                current={currentPage}
-                                onChange={handlePageChange}
-                            />
+                    {total > pageSize ? (
+                        <Pagination current={currentPage} total={total} pageSize={pageSize} onChange={handlePageChange}/>
                     ) : ''}
                 </div>
                 {/*<div className="py-5 text-center">*/}

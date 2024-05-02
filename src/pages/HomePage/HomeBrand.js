@@ -43,7 +43,8 @@ export default function HomeBrand() {
                 {brand.map((s) => (
                     <a href={`/category/${s.category.slug}`} className="border-2 border-blue-400 rounded-lg items-center flex justify-center">
                         <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=100`}
-                             alt={s}
+                             alt={s.category.slug}
+                             title={s.category.slug}
                              style={{
                                  minWidth: '141px',
                                  maxWidth: '145px',
