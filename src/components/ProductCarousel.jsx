@@ -1,31 +1,6 @@
 import React from "react";
 import { Carousel } from 'antd';
 
-function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} nextArrow`}
-            style={{ ...style, display: "block", color: "black", fontSize: '20px', top: '40%', transform: 'translateY(-50%)' }}
-            onClick={onClick}
-        >
-            <FaChevronRight />
-        </div>
-    );
-}
-
-function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} prevArrow`}
-            style={{ ...style, display: "block", color: "black", fontSize: '20px', top: '40%', transform: 'translateY(-50%)' }}
-            onClick={onClick}
-        >
-            <FaChevronLeft />
-        </div>
-    );
-}
 export default function ProductCarousel({products}) {
     const settings = {
         dots: false,
@@ -34,8 +9,6 @@ export default function ProductCarousel({products}) {
         autoplaySpeed: 2000,
         slidesToShow: 5,
         slidesToScroll: 1,
-        nextArrow: <ArrowRightOutlined />,
-        prevArrow: <ArrowLeftOutlined />,
         responsive: [
             {
                 breakpoint: 1024,
