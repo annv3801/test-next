@@ -1,6 +1,7 @@
 import CategoryImage from "@/pages/CategoryPage/CategoryImage";
 import CategoryProduct from "@/pages/CategoryPage/CategoryProduct";
 import axios from "axios";
+import NewsCategory from "@/pages/NewsPage/NewsCategory";
 
 async function getData(params) {
     try {
@@ -19,21 +20,36 @@ async function getData(params) {
 }
 
 export async function generateMetadata(params) {
-    const data = await getData(params);
+    let data;
+    let title;
+    let description;
+    let images;
+    if (params.params.slug === 'tin-tuc') {
+        title = 'RƯỢU DUTY SÂN BAY - TIN TỨC';
+        description = 'Chuyên mua bán rượu - Tin tức';
+        images = 'https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
+    } else {
+        data = await getData(params);
+        title = `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`;
+        description = `Chuyên mua bán rượu - ${data.name.toUpperCase()}`;
+        images = data ? `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700` : '';
+    }
     return {
-        title: `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`,
-        description: `Chuyên mua bán rượu - ${data.name.toUpperCase()}`,
+        title: title,
+        description: description,
         siteName: "RƯỢU DUTY SÂN BAY",
         url: "https://thumuaruouhn.online/",
         type: "website",
         openGraph: {
-            images: `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700`,
+            images: images,
         },
     }
 }
 
 export default async function Category(params) {
-    const data = await getData(params);
+    if (params.params.slug === 'tin-tuc') {
+        return <NewsCategory />; // Render the News component if slug is 'tin-tuc'
+    }
     return (
         <div>
             <CategoryImage slug={params.params.slug}></CategoryImage>
