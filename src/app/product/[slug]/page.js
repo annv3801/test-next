@@ -26,7 +26,7 @@ export async function generateMetadata(params) {
         url: "https://thumuaruouhn.online/",
         type: "website",
         openGraph: {
-            images: `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700`,
+            images: `${data.productImages[0].image} `,
         },
     }
 }
