@@ -7,3 +7,4 @@ services:
       - "3000:3000"  # Map the host port to container port
     volumes:
       - .:/app # Mount your project code as a volume for development
+    restart: always
