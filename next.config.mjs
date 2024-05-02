@@ -6,7 +6,6 @@ const nextConfig = {
     webpack: (config, options) => {
         config.module.rules.push({
             test: /@ant-design[\\/]icons/,
-            use: [options.defaultLoaders.babel],
         });
 
         return config;
