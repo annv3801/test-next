@@ -1,6 +1,5 @@
 'use client';
 import {useCallback, useEffect, useRef, useState} from "react";
-import {useLocation} from "react-router-dom";
 import axios from "axios";
 import Link from "next/link";
 function CustomLink({ to, onClick, customUrl, children, isActive, ...rest }) {
