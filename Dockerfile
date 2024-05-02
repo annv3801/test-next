@@ -10,4 +10,6 @@ COPY . .
 
 RUN npm run build
 
-CMD ["npm", "start"]
+COPY .next ./.next
+
+CMD ["npm", "run", "dev"]
