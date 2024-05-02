@@ -1,27 +1,4 @@
-import {Carousel} from "antd";
-//
-// async function getData() {
-//     try {
-//         const res = await axios.post('https://api.thumuaruouhn.online/Slide/View-List-Slides', {
-//                 pageSize: 10,
-//                 currentPage: 1,
-//                 searchByFields: [],
-//                 sortByFields: [],
-//             },
-//             {
-//                 headers: {
-//                     'Accept': 'text/plain',
-//                     'Content-Type': 'application/json'
-//                 }
-//             })
-//         return res.data?.data.data;
-//     } catch (error) {
-//         // This will activate the closest `error.js` Error Boundary
-//         throw new Error(`There was an error retrieving the data: ${error}`);
-//     }
-// }
-
-export default async function HomeIntroduce() {
+export default function HomeIntroduce() {
     return (
         <div className="relative bg-[#edf0f3]">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative">

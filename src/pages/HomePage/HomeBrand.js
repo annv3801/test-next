@@ -1,5 +1,7 @@
+'use client'
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-//
+
 async function getData() {
     try {
         const res = await axios.post('https://api.thumuaruouhn.online/LiquorExchange/Brand/Get-List-Brands', {
@@ -16,13 +18,22 @@ async function getData() {
             })
         return res.data?.data.data;
     } catch (error) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);
     }
 }
 
-export default async function HomeBrand() {
-    const brand = await getData();
+export default function HomeBrand() {
+    const [brand, setBrand] = useState([]);
+
+    useEffect(() => {
+        const fetchBrand = async () => {
+            const data = await getData();
+            setBrand(data);
+        };
+
+        fetchBrand();
+    }, []);
+
     return (
         <div className="mx-auto container py-5 px-3">
             <div className="heading text-center">

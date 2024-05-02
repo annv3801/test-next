@@ -83,28 +83,3 @@ export default function CategoryProduct({slug}) {
         </div>
     );
 }
-export async function getServerSideProps(context) {
-    const slug = context.params.slug;
-    const response = await axios.post(`https://api.thumuaruouhn.online/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
-        pageSize: 30,
-        currentPage: 1,
-        searchByFields: [],
-        sortByFields: [
-            {
-                "colName": "price",
-                "sortDirection": 'asc'
-            }
-        ]
-    });
-
-    const products = response.data?.data.data;
-    const total = response.data?.data.total;
-
-    return {
-        props: {
-            slug,
-            products,
-            total
-        }
-    };
-}

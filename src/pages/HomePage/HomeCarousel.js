@@ -1,4 +1,6 @@
-import axios from 'axios';
+'use client'
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import {Carousel} from "antd";
 
 async function getData() {
@@ -17,13 +19,22 @@ async function getData() {
             })
         return res.data?.data.data;
     } catch (error) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);
     }
 }
 
-export default async function HomeCarousel() {
-    const data = await getData()
+export default function HomeCarousel() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getData();
+            setData(data);
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <Carousel autoplay>
             {data.map((s) => {

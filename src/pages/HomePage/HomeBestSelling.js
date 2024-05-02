@@ -1,4 +1,6 @@
-import axios from 'axios';
+'use client'
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import ProductCarousel from "@/components/ProductCarousel";
 
 async function getData() {
@@ -17,13 +19,22 @@ async function getData() {
             })
         return res.data?.data.data;
     } catch (error) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);
     }
 }
 
-export default async function HomeBestSelling() {
-    const products = await getData()
+export default function HomeBestSelling() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const data = await getData();
+            setProducts(data);
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <div className="relative">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative">

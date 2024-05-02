@@ -7,11 +7,8 @@ import {Carousel, Image} from "antd";
 export default function ProductData({slug}) {
     const [isLoading, setIsLoading] = useState(true);
     const [product, setProduct] = useState({}); // Initialize product as an empty object
-    const [viewedProducts, setViewedProducts] = useState(() => {
-        const saved = localStorage.getItem('viewedProducts');
-        const initialValue = JSON.parse(saved);
-        return initialValue || [];
-    });
+    const [viewedProducts, setViewedProducts] = useState([]);
+
     useEffect(() => {
         axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
             {
@@ -37,7 +34,6 @@ export default function ProductData({slug}) {
                 console.error(`There was an error retrieving the data: ${error}`);
             });
     }, [slug]);
-
     const addViewedProduct = (product) => {
         setViewedProducts(prevProducts => {
             // Check if the product is already in the list
@@ -66,6 +62,16 @@ export default function ProductData({slug}) {
             return prevProducts;
         });
     };
+    useEffect(() => {
+        const loadViewedProducts = () => {
+            const saved = localStorage.getItem('viewedProducts');
+            const initialValue = JSON.parse(saved) || [];
+            setViewedProducts(initialValue);
+        };
+
+        loadViewedProducts();
+    }, []);
+
 
     useEffect(() => {
         // Get the current timestamp
@@ -85,10 +91,7 @@ export default function ProductData({slug}) {
         }
     }, []);
 
-
-    const saved = localStorage.getItem('viewedProducts');
-    const savedProducts = JSON.parse(saved);
-    const matchingProducts = savedProducts?.products.filter(product => product?.slug !== slug);
+    const matchingProducts = viewedProducts.filter(p => p.slug !== product.slug);
     if (isLoading) {
         return <p>Loading...</p>
     }
