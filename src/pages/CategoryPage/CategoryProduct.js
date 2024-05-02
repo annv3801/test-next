@@ -1,8 +1,50 @@
 'use client'
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Pagination} from "antd";
-import { Select } from 'antd';
+
+function Select({ options, defaultValue, onChange }) {
+    const [value, setValue] = useState(defaultValue);
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        onChange(event.target.value);
+    };
+
+    return (
+        <select value={value} onChange={handleChange}>
+            {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
+        </select>
+    );
+}
+
+function Pagination({ total, pageSize, current, onChange }) {
+    const totalPages = Math.ceil(total / pageSize);
+
+    const handleClick = (page) => {
+        onChange(page);
+    };
+
+    return (
+        <div>
+            {[...Array(totalPages).keys()].map((_, index) => {
+                const page = index + 1;
+                return (
+                    <button
+                        key={page}
+                        onClick={() => handleClick(page)}
+                        style={{ fontWeight: page === current ? 'bold' : 'normal' }}
+                    >
+                        {page}
+                    </button>
+                );
+            })}
+        </div>
+    );
+}
 
 export default function CategoryProduct({slug}) {
     const [products, setProducts] = useState([]);
@@ -40,10 +82,14 @@ export default function CategoryProduct({slug}) {
         <div className="relative">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0">
                 <div className="flex justify-between">
-                    <Select defaultValue="asc" onChange={setSortOption}>
-                        <Select.Option value="asc">Giá tăng dần</Select.Option>
-                        <Select.Option value="desc">Giá giảm dần</Select.Option>
-                    </Select>
+                    <Select
+                        defaultValue="asc"
+                        onChange={setSortOption}
+                        options={[
+                            { value: 'asc', label: 'Giá tăng dần' },
+                            { value: 'desc', label: 'Giá giảm dần' },
+                        ]}
+                    />
                     <div className="px-5 text-right my-auto">
                         {total > currentPage * pageSize ? (
                             <div className="my-auto">
@@ -73,7 +119,12 @@ export default function CategoryProduct({slug}) {
                 </div>
                 <div className="text-right">
                     {total > currentPage * pageSize ? (
-                        <Pagination current={currentPage} total={total} pageSize={pageSize} onChange={handlePageChange}/>
+                            <Pagination
+                                total={total}
+                                pageSize={pageSize}
+                                current={currentPage}
+                                onChange={handlePageChange}
+                            />
                     ) : ''}
                 </div>
                 {/*<div className="py-5 text-center">*/}
