@@ -21,7 +21,7 @@ async function getData() {
 export default async function RootLayout({ children }) {
     const data = await getData()
   return (
-    <html lang="en">
+    <html lang="vi">
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
