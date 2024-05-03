@@ -37,7 +37,7 @@ export default function HomeBrand() {
     return (
         <div className="mx-auto container py-5 px-3">
             <div className="heading text-center">
-                <h1 className="py-4 md:pt-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thương hiệu</h1>
+                <h2 className="py-4 md:pt-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thương hiệu</h2>
             </div>
             <div className="grid grid-cols-2 gap-2 md:gap-3 md:grid-cols-5 lg:grid-cols-6 lg:gap-5 pt-5">
                 {brand.map((s) => (

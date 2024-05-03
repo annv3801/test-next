@@ -197,7 +197,7 @@ export default function ProductData({slug}) {
             </div>
             <div className="container mx-auto pt-5">
                 <div className="heading text-center">
-                    <h1 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thông tin</h1>
+                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thông tin</h2>
                 </div>
                 <div className="grid grid-cols-2 px-4 md:grid-cols-3 gap-10">
                     {product?.productAttributes?.map((attr) => (
@@ -211,7 +211,7 @@ export default function ProductData({slug}) {
                     ))}
                 </div>
                 <div className="heading text-center mt-10">
-                    <h1 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Chi tiết</h1>
+                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Chi tiết</h2>
                 </div>
                 <div className="px-4" dangerouslySetInnerHTML={{ __html: product?.description }}></div>
             </div>
@@ -220,7 +220,7 @@ export default function ProductData({slug}) {
             {/*End*/}
             <div className="container mx-auto py-8">
                 <div className="heading text-center">
-                    <h1 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h1>
+                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h2>
                 </div>
                 <div className="pt-5 mx-3 md:mx-0" dangerouslySetInnerHTML={{ __html: product?.enjoy }}></div>
                 {/*<h1 className="text-center text-xl border-b-[1px] pt-10 pb-3 font-bold">Đánh giá</h1>*/}
@@ -281,7 +281,7 @@ export default function ProductData({slug}) {
                 <div className="bg-[#edf0f3] py-5">
                     <div className="container mx-auto">
                         <div className="heading text-center">
-                            <h1 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">Sản phẩm liên quan</h1>
+                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">Sản phẩm liên quan</h2>
                         </div>
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
                             {product?.relatedProduct?.map((product) => (
@@ -304,7 +304,7 @@ export default function ProductData({slug}) {
                 <div className="bg-white py-5">
                     <div className="container mx-auto">
                         <div className="heading text-center">
-                            <h1 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Sản phẩm đã xem</h1>
+                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Sản phẩm đã xem</h2>
                         </div>
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
                             {matchingProducts?.map((product) => (
