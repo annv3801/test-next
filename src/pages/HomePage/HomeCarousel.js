@@ -25,6 +25,7 @@ async function getData() {
 
 export default function HomeCarousel() {
     const [data, setData] = useState([]);
+    const [windowDimensions, setWindowDimensions] = useState({height: 700, width: 1920});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,13 +34,21 @@ export default function HomeCarousel() {
         };
 
         fetchData();
+
+        // Set window dimensions
+        if (typeof window !== 'undefined') {
+            setWindowDimensions({
+                height: window.innerWidth > 768 ? 700 : 500,
+                width: window.innerWidth > 768 ? 1920 : 800
+            });
+        }
     }, []);
 
     return (
         <Carousel autoplay>
             {data.map((s) => {
                 return (
-                    <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=700&width=1920`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
+                    <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
                 );
             })}
         </Carousel>
