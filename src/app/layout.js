@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
     <body>
         <Header configData={data}></Header>
         {children}
-        <Footer></Footer>
+        <Footer configData={data}></Footer>
     </body>
     </html>
   );
