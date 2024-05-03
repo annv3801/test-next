@@ -5,7 +5,7 @@ export default function ProductCarousel({products}) {
     const settings = {
         dots: false,
         infinite: true,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2000,
         slidesToShow: 5,
         slidesToScroll: 1,
