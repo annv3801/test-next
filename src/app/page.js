@@ -6,9 +6,9 @@ import HomeBrand from "@/pages/HomePage/HomeBrand";
 
 export async function generateMetadata() {
     return {
-        title: "RƯỢU DUTY SÂN BAY - CHUYÊN MUA BÁN - THU MUA RƯỢU",
-        description: "RƯỢU DUTY SÂN BAY - CHUYÊN MUA BÁN - THU MUA RƯỢU",
-        siteName: "RƯỢU DUTY SÂN BAY - CHUYÊN MUA BÁN - THU MUA RƯỢU",
+        title: "RƯỢU DUTY SÂN BAY - MUA BÁN THU MUA RƯỢU",
+        description: "RƯỢU DUTY SÂN BAY - MUA BÁN THU MUA RƯỢU",
+        siteName: "RƯỢU DUTY SÂN BAY - CHUYÊN MUA BÁN THU MUA RƯỢU",
         url: "https://thumuaruouhn.online/",
         type: "website",
         openGraph: {
