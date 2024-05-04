@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: ["/admin", '/private/'],
         },
-        sitemap: 'http://localhost:3000/sitemap.xml',
+        sitemap: 'https://thumuaruouhn.online/sitemap.xml',
     }
 }
