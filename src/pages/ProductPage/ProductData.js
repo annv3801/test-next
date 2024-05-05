@@ -2,8 +2,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import ProductConfigData from "@/pages/ProductPage/ProductConfigData";
-import {Spin} from "antd";
-const { Carousel, Image } = require('antd');
+import {Spin, Carousel, Image} from "antd/lib";
 export default function ProductData({slug}) {
     const [isLoading, setIsLoading] = useState(true);
     const [product, setProduct] = useState({}); // Initialize product as an empty object

@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic';
-const Pagination = dynamic(() => import('antd').then(mod => mod.Pagination), { ssr: false });
+import {Pagination} from "antd/lib"
 
 export default function CustomPagination({ currentPage, total, pageSize, handlePageChange }) {
     return (
