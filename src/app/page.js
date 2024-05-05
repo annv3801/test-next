@@ -6,9 +6,9 @@ import HomeBrand from "@/pages/HomePage/HomeBrand";
 
 export async function generateMetadata() {
     return {
-        title: "RƯỢU DUTY SÂN BAY - MUA BÁN THU MUA RƯỢU",
-        description: "RƯỢU DUTY SÂN BAY - MUA BÁN THU MUA RƯỢU",
-        siteName: "RƯỢU DUTY SÂN BAY - CHUYÊN MUA BÁN THU MUA RƯỢU",
+        title: "Rượu Duty Sân Bay",
+        description: "Rượu Duty Sân Bay - Chuyên mua bán thu mua rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới.",
+        siteName: "Rượu Duty Sân Bay",
         url: "https://thumuaruouhn.online/",
         type: "website",
         openGraph: {
