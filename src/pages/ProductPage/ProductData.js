@@ -2,6 +2,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import ProductConfigData from "@/pages/ProductPage/ProductConfigData";
+import {Spin} from "antd";
 const { Carousel, Image } = require('antd');
 export default function ProductData({slug}) {
     const [isLoading, setIsLoading] = useState(true);
@@ -92,7 +93,11 @@ export default function ProductData({slug}) {
 
     const matchingProducts = viewedProducts.filter(p => p.slug !== product.slug);
     if (isLoading) {
-        return <p>Loading...</p>
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Spin />
+            </div>
+        );
     }
     return (
         <div>
@@ -222,7 +227,7 @@ export default function ProductData({slug}) {
                 <div className="heading text-center">
                     <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h2>
                 </div>
-                <div className="pt-5 mx-3 md:mx-0" dangerouslySetInnerHTML={{ __html: product?.enjoy }}></div>
+                <div className="pt-5 mx-3 md:mx-0" id="tasting" dangerouslySetInnerHTML={{ __html: product?.enjoy }}></div>
                 {/*<h1 className="text-center text-xl border-b-[1px] pt-10 pb-3 font-bold">Đánh giá</h1>*/}
                 {/*<div className="bg-[#eeece3] rounded-xl mt-5 mx-3 md:mx-0">*/}
                 {/*    <form action="" className="p-5" onSubmit={handleSubmit}>*/}

@@ -58,7 +58,7 @@ export default function HomeNews() {
                     })}
                 </div>
                 <div className="py-5 text-center">
-                    <a href="" className="underline">Xem tất cả</a>
+                    <a href="/category/tin-tuc" className="underline">Xem tất cả</a>
                 </div>
             </div>
         </div>
