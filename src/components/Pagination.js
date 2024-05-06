@@ -1,4 +1,4 @@
-import {Pagination} from "antd/lib"
+import {Pagination} from "antd"
 
 export default function CustomPagination({ currentPage, total, pageSize, handlePageChange }) {
     return (

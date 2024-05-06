@@ -1,4 +1,4 @@
-import { Select as AntdSelect } from 'antd/lib';
+import { Select as AntdSelect } from 'antd';
 
 export default function CustomSelect({ defaultValue, onChange, options }) {
     return (
