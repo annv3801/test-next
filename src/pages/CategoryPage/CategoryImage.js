@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 export default function CategoryImage({slug}) {
     const [category, setCategory] = useState({});
     useEffect(() => {
-        axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Category/Get-Category-By-Slug/${slug}`,
+        axios.get(`http://localhost:4444/LiquorExchange/Category/Get-Category-By-Slug/${slug}`,
             {
                 headers: {
                     'Accept': 'text/plain',
@@ -25,7 +25,7 @@ export default function CategoryImage({slug}) {
         <div>
             {category.image != null && category.image != "" ? (
                 <div>
-                    <img src={`https://api.thumuaruouhn.online/Uploads/${category.image}?width=1920&height=700`} className="w-full h-[200px] md:h-[700px] object-cover" alt={category.name} title={category.name}/>
+                    <img src={`http://localhost:4444/Uploads/${category.image}?width=1920&height=700`} className="w-full h-[200px] md:h-[700px] object-cover" alt={category.name} title={category.name}/>
                 </div>
             ) : ''}
         </div>

@@ -4,7 +4,7 @@ import ProductData from "@/pages/ProductPage/ProductData";
 async function getData(params) {
     try {
         const slug = params.params.slug;
-        const response = await axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Product/Get-Product-By-Slug/${slug}`, {
+        const response = await axios.get(`http://localhost:4444/LiquorExchange/Product/Get-Product-By-Slug/${slug}`, {
             headers: {
                 'Accept': 'text/plain',
             },

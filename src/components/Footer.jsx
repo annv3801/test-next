@@ -9,28 +9,28 @@ const Footer = ({configData}) => {
                 </a>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3>Về chúng tôi</h3>
+                        <h3 className="capitalize">Về chúng tôi</h3>
                         <div className="flex mb-3">
-                            <a href="/ve-chung-toi">Giới thiệu</a>
+                            <a href="/gioi-thieu" className="capitalize">Giới thiệu</a>
                         </div>
                         <div className="flex mb-3">
-                            <a href="/bao-mat-thong-tin">Bảo mật thông tin</a>
+                            <a href="/bao-mat-thong-tin" className="capitalize">Bảo mật thông tin</a>
                         </div>
                         <div className="flex mb-3">
-                            <a href="/giao-hang-doi-tra">Giao hàng & đổi trả</a>
-                        </div>
-                    </div>
-                    <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3>Thông tin</h3>
-                        <div className="flex mb-3">
-                            <a href="/thuong-hieu">Thương Hiệu</a>
-                        </div>
-                        <div className="flex mb-3">
-                            <a href="/san-pham-moi">Sản Phẩm Mới</a>
+                            <a href="/giao-hang-doi-tra" className="capitalize">Giao hàng & đổi trả</a>
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3>Thông Tin Liên hệ</h3>
+                        <h3 className="capitalize">Thông tin</h3>
+                        <div className="flex mb-3">
+                            <a href="/thuong-hieu" className="capitalize">Thương Hiệu</a>
+                        </div>
+                        <div className="flex mb-3">
+                            <a href="/san-pham-moi" className="capitalize">Sản Phẩm Mới</a>
+                        </div>
+                    </div>
+                    <div className="bg-[#e9e9e9] rounded-lg p-5">
+                        <h3 className="capitalize">Thông Tin Liên hệ</h3>
                         <div className="flex gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" className="fill-current my-auto" viewBox="0 0 384 512">
                                 <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>

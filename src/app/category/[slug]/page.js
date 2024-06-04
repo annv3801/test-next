@@ -6,7 +6,7 @@ import NewsCategory from "@/pages/NewsPage/NewsCategory";
 async function getData(params) {
     try {
         const slug = params.params.slug;
-        const response = await axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Category/Get-Category-By-Slug/${slug}`, {
+        const response = await axios.get(`http://localhost:4444/LiquorExchange/Category/Get-Category-By-Slug/${slug}`, {
             headers: {
                 'Accept': 'text/plain',
             },
@@ -27,12 +27,12 @@ export async function generateMetadata(params) {
     if (params.params.slug === 'tin-tuc') {
         title = 'RƯỢU DUTY SÂN BAY - TIN TỨC';
         description = 'Chuyên mua bán rượu - Tin tức';
-        images = 'https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
+        images = 'http://localhost:4444/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
     } else {
         data = await getData(params);
         title = `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`;
         description = `Chuyên mua bán rượu - ${data.name.toUpperCase()}`;
-        images = data ? `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700` : '';
+        images = data ? `http://localhost:4444/Uploads/${data.image}?width=1920&height=700` : '';
     }
     return {
         title: title,

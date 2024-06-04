@@ -1,4 +1,4 @@
-import NewProductsPage from "@/pages/NewProduct/NewProductsPage";
+import DeliveryPage from "@/pages/Delivery/DeliveryPage";
 
 export async function generateMetadata() {
     return {
@@ -13,10 +13,10 @@ export async function generateMetadata() {
     }
 }
 
-export default async function NewProducts() {
+export default async function Delivery() {
     return (
         <div>
-            <NewProductsPage></NewProductsPage>
+            <DeliveryPage></DeliveryPage>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 
 async function getData() {
     try {
-        const res = await axios.post('https://api.thumuaruouhn.online/LiquorExchange/Brand/Get-List-Brands', {
+        const res = await axios.post('http://localhost:4444/LiquorExchange/Brand/Get-List-Brands', {
                 pageSize: 99,
                 currentPage: 1,
                 searchByFields: [],
@@ -42,7 +42,7 @@ export default function HomeBrand() {
             <div className="grid grid-cols-2 gap-2 md:gap-3 md:grid-cols-5 lg:grid-cols-6 lg:gap-5 pt-5">
                 {brand.map((s) => (
                     <a href={`/category/${s.category.slug}`} className="border-2 border-blue-400 rounded-lg items-center flex justify-center">
-                        <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=100`}
+                        <img src={`http://localhost:4444/Uploads/${s.image}?height=100`}
                              alt={s.category.slug}
                              title={s.category.slug}
                              style={{

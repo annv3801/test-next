@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 async function getData() {
     try {
-        const response = await axios.get('https://api.thumuaruouhn.online/Config/View-Config', {
+        const response = await axios.get('http://localhost:4444/Config/View-Config', {
             headers: {
                 'Accept': 'text/plain',
             },

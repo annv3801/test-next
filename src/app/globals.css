@@ -26,7 +26,6 @@
 .custom-font h3 {
     display: block;
     font-size: 1.17em;
-    margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
@@ -113,4 +112,9 @@ figure.image.image_resized{
     font-size: 20px !important;
     top: 40% !important;
     transform: translateY(-50%) !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

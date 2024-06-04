@@ -23,14 +23,14 @@ function Select({ options, defaultValue, onChange }) {
     );
 }
 
-export default function CategoryProduct({slug}) {
+export default function TagProduct({slug}) {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(30);
     const [sortOption, setSortOption] = useState('asc');
     const pageSize = 30;
     useEffect(() => {
-        axios.post(`http://localhost:4444/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
+        axios.post(`http://localhost:4444/LiquorExchange/Tag/Get-Product-Tag-By-Slug/${slug}`, {
             pageSize: pageSize,
             currentPage: currentPage,
             searchByFields: [],
