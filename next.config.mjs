@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    poweredByHeader: false,
     images: {
         domains: ['api.thumuaruouhn.online'],
     },
@@ -7,7 +8,6 @@ const nextConfig = {
         config.module.rules.push({
             test: /@ant-design[\\/]icons/,
         });
-
         return config;
     },
 };
