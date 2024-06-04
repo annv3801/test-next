@@ -4,7 +4,7 @@ import TagProduct from "@/pages/TagPage/TagProduct";
 async function getData(params) {
     try {
         const slug = params.params.slug;
-        const response = await axios.get(`http://localhost:4444/LiquorExchange/Tag/Get-Tag-By-Slug/${slug}`, {
+        const response = await axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Tag/Get-Tag-By-Slug/${slug}`, {
             headers: {
                 'Accept': 'text/plain',
             },
@@ -24,7 +24,7 @@ export async function generateMetadata(params) {
     data = await getData(params);
     title = `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`;
     description = `Chuyên mua bán rượu - ${data.name.toUpperCase()}`;
-    images = data ? `http://localhost:4444/Uploads/${data.image}?width=1920&height=700` : '';
+    images = data ? `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700` : '';
     return {
         title: title,
         description: description,

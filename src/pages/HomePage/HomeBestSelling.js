@@ -5,7 +5,7 @@ import ProductCarousel from "@/components/ProductCarousel";
 
 async function getData() {
     try {
-        const res = await axios.post('http://localhost:4444/LiquorExchange/Product/Get-List-Products-Best-Selling', {
+        const res = await axios.post('https://api.thumuaruouhn.online/LiquorExchange/Product/Get-List-Products-Best-Selling', {
                 pageSize: 10,
                 currentPage: 1,
                 searchByFields: [],

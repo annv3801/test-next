@@ -8,7 +8,7 @@ export async function generateMetadata() {
         url: "https://thumuaruouhn.online/",
         type: "website",
         openGraph: {
-            images: `http://localhost:4444/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg`,
+            images: `https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg`,
         },
     }
 }

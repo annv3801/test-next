@@ -30,7 +30,7 @@ export default function TagProduct({slug}) {
     const [sortOption, setSortOption] = useState('asc');
     const pageSize = 30;
     useEffect(() => {
-        axios.post(`http://localhost:4444/LiquorExchange/Tag/Get-Product-Tag-By-Slug/${slug}`, {
+        axios.post(`https://api.thumuaruouhn.online/LiquorExchange/Tag/Get-Product-Tag-By-Slug/${slug}`, {
             pageSize: pageSize,
             currentPage: currentPage,
             searchByFields: [],
