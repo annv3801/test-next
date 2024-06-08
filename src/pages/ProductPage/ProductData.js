@@ -204,7 +204,7 @@ export default function ProductData({slug}) {
                     <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thông tin</h2>
                 </div>
                 <div className="grid grid-cols-2 px-4 md:grid-cols-3 gap-10">
-                    {product?.productAttributes?.map((attr) => (
+                    {product?.productAttributes?.filter(attr => attr.attributeValue && attr.attributeValue.trim() !== "").map((attr) => (
                         <div className="flex gap-4" key={attr?.id}>
                             <div dangerouslySetInnerHTML={{ __html: attr.svgIcon }} className="w-11 h-11 my-auto"></div>
                             <div className="flex flex-col my-auto">

@@ -26,17 +26,17 @@ export default function ProductConfigData() {
         <div className="flex gap-3">
             <div className="font-bold my-auto">Mua hàng liên hệ:</div>
             <div className="flex gap-3 my-auto">
-                <a href={`${configData?.urlFacebook}`} className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
+                <a href={`${configData?.urlFacebook}`} target="_blank" className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="w-5 h-5 fill-current text-blue-700 group-hover:text-white transition-colors duration-500 ease-in-out">
                         <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/>
                     </svg>
                 </a>
-                <a href="#" className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
+                <a href={`//${configData?.messenger}`} target="_blank" className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current text-blue-700 group-hover:text-white transition-colors duration-500 ease-in-out">
                         <path d="M256.6 8C116.5 8 8 110.3 8 248.6c0 72.3 29.7 134.8 78.1 177.9 8.4 7.5 6.6 11.9 8.1 58.2A19.9 19.9 0 0 0 122 502.3c52.9-23.3 53.6-25.1 62.6-22.7C337.9 521.8 504 423.7 504 248.6 504 110.3 396.6 8 256.6 8zm149.2 185.1l-73 115.6a37.4 37.4 0 0 1 -53.9 9.9l-58.1-43.5a15 15 0 0 0 -18 0l-78.4 59.4c-10.5 7.9-24.2-4.6-17.1-15.7l73-115.6a37.4 37.4 0 0 1 53.9-9.9l58.1 43.5a15 15 0 0 0 18 0l78.4-59.4c10.4-8 24.1 4.5 17.1 15.6z"/>
                     </svg>
                 </a>
-                <a href={`mailto:${configData?.email}`} className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
+                <a href={`mailto:${configData?.email}`}  className="border-[1px] border-gray-500 my-3 p-2 rounded-lg hover:bg-blue-800 group transition duration-500 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current text-blue-700 group-hover:text-white transition-colors duration-500 ease-in-out">
                         <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/>
                     </svg>
