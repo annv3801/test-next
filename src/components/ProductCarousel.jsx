@@ -81,7 +81,7 @@ export default function ProductCarousel({products}) {
                                     <div>{_?.alcoholPercentage}%</div>
                                 </div>
                             </div>
-                            <div className="text-base text-center font-bold pb-0.5" style={{marginBottom: '5px'}}>{Intl.NumberFormat('de-DE').format(_?.price) + 'đ'}</div>
+                            <div className="text-base text-center font-bold pb-0.5" style={{marginBottom: '5px'}}>{_?.price != 0 ? Intl.NumberFormat('de-DE').format(_?.price) + 'đ' : "Liên hệ"}</div>
                         </a>
                     </div>
                 ))}
