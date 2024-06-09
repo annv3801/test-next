@@ -1,6 +1,6 @@
 'use client'
 import axios from "axios";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProductConfigData from "@/pages/ProductPage/ProductConfigData";
 import {Spin, Carousel, Image} from "antd";
 export default function ProductData({slug}) {
@@ -21,6 +21,7 @@ export default function ProductData({slug}) {
                 setProduct(productData);
                 addViewedProduct({
                     name: productData.name,
+                    dutyFrom: productData.dutyFrom,
                     slug: productData.slug,
                     image: productData.productImages[0]?.image, // assuming productImages is an array and you want the first image
                     price: productData.price,
@@ -121,7 +122,7 @@ export default function ProductData({slug}) {
                     <div className="lg:w-[45%] m-5 lg:m-0">
                         <div className="">
                             <h1 className="text-2xl font-extrabold uppercase">{product?.name}</h1>
-                            <div className='text-xl font-bold py-2'>{`(Duty sân bay ${product?.dutyFrom})`}</div>
+                            {product?.dutyFrom != null ? <div className='text-base font-bold py-2'>{`(Duty sân bay ${product?.dutyFrom})`}</div> : ""}
                             <div className="h-1 border-t-2 w-[75%] border-gray-300 py-1"></div>
                             <div className="flex gap-1 font-bold text-gray-500">
                                 <h3>{product?.bottle}ml</h3>
@@ -299,6 +300,7 @@ export default function ProductData({slug}) {
                                 <a href={`/product/${product?.slug}`} key={product.id} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                     <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
                                     <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>
+                                    {product?.dutyFrom != null ? <div className='text-base font-bold py-2 text-center'>{`(Duty sân bay ${product?.dutyFrom})`}</div> : ""}
                                     <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                         <div>{product?.bottle}ml</div>
                                         <div>/</div>
@@ -322,6 +324,7 @@ export default function ProductData({slug}) {
                                 <a href={`/product/${product?.slug}`} key={product?.slug} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                     <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
                                     <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">{product?.name}</div>
+                                    {product?.dutyFrom != null ? <div className='text-base font-bold py-2 text-center'>{`(Duty sân bay ${product?.dutyFrom})`}</div> : ""}
                                     <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                         <div>{product?.bottle}ml</div>
                                         <div>/</div>
