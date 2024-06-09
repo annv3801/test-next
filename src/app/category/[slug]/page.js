@@ -38,7 +38,7 @@ export async function generateMetadata(params) {
         title: title,
         description: description,
         siteName: "RƯỢU DUTY SÂN BAY",
-        url: "https://thumuaruouhn.online/",
+        url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
             images: images,

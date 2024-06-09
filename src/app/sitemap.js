@@ -4,7 +4,7 @@ export default async function sitemap() {
     const data = await response.json();
 
     const productEntries = data.data.map((data) => ({
-        url: `https://thumuaruouhn.online/product/${data.slug}`
+        url: `https://ruoudutysanbay.com/product/${data.slug}`
     }))
     return [
         ...productEntries

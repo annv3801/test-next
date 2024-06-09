@@ -23,7 +23,7 @@ export async function generateMetadata(params) {
         title: `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`,
         description: `Chuyên mua bán rượu - ${data.name.toUpperCase()}`,
         siteName: "RƯỢU DUTY SÂN BAY",
-        url: "https://thumuaruouhn.online/",
+        url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
             images: `${data.productImages[0].image} `,

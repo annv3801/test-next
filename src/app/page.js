@@ -9,7 +9,7 @@ export async function generateMetadata() {
         title: "Rượu Duty Sân Bay",
         description: "Rượu Duty Sân Bay - Chuyên mua bán thu mua rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới.",
         siteName: "Rượu Duty Sân Bay",
-        url: "https://thumuaruouhn.online/",
+        url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
             images: "https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg",

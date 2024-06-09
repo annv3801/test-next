@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: ["/admin", '/private/'],
         },
-        sitemap: 'https://thumuaruouhn.online/sitemap.xml',
+        sitemap: 'https://ruoudutysanbay.com/sitemap.xml',
     }
 }
