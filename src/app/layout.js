@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import axios from "axios";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
 async function getData() {
     try {
@@ -28,6 +29,17 @@ export default async function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet"/>
     </head>
     <body>
+        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-DFR575JZTN`} />
+        <Script strategy="lazyOnload">
+            {`
+                window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-DFR575JZTN');
+            `}
+        </Script>
+
         <Header configData={data}></Header>
         {children}
         <Footer configData={data}></Footer>
