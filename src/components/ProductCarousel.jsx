@@ -74,7 +74,7 @@ export default function ProductCarousel({products}) {
                         <a href={`/product/${_?.slug}`} className="bg-white flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out mx-1 md:mx-3">
                             <img className="rounded-xl" src={`${_?.productImages[0]?.image}?height=375`} alt=""/>
                             <div style={{minHeight: '7rem'}}>
-                                <h1 className="mt-3 text-lg lg:text-lg font-bold text-center line-clamp-2">{`${_?.name}`}</h1>
+                                <h1 className="mt-3 text-lg lg:text-lg font-bold text-center line-clamp-2 capitalize">{`${_?.name}`}</h1>
                                 <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                     <div>{_?.bottle}ml</div>
                                     <div>/</div>

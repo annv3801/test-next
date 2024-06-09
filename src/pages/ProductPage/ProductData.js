@@ -120,7 +120,7 @@ export default function ProductData({slug}) {
                     </div>
                     <div className="lg:w-[45%] m-5 lg:m-0">
                         <div className="">
-                            <h1 className="text-2xl font-bold">{product?.name}</h1>
+                            <h1 className="text-2xl font-bold uppercase">{product?.name}</h1>
                             <div className="flex gap-1 font-bold text-gray-500">
                                 <h3>{product?.bottle}ml</h3>
                                 /
@@ -128,7 +128,7 @@ export default function ProductData({slug}) {
                             </div>
                         </div>
                         <div className="flex gap-2 my-3 text-red-500 font-bold text-3xl">
-                            {Intl.NumberFormat('de-DE').format(product?.price) + 'đ'}
+                            {product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}
                         </div>
                         <a href="#tasting" className="font-bold hover:text-blue-500">
                             Tasting notes (1)
@@ -223,10 +223,15 @@ export default function ProductData({slug}) {
 
             {/*End*/}
             <div className="container mx-auto py-8">
-                <div className="heading text-center">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h2>
-                </div>
-                <div className="pt-5 mx-3 md:mx-0" id="tasting" dangerouslySetInnerHTML={{ __html: product?.enjoy }}></div>
+                {product?.enjoy == null ? "" : (
+                    <div>
+                        <div className="heading text-center">
+                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h2>
+                        </div>
+                        <div className="pt-5 mx-3 md:mx-0" id="tasting" dangerouslySetInnerHTML={{__html: product?.enjoy}}></div>
+                    </div>
+                )}
+
                 {/*<h1 className="text-center text-xl border-b-[1px] pt-10 pb-3 font-bold">Đánh giá</h1>*/}
                 {/*<div className="bg-[#eeece3] rounded-xl mt-5 mx-3 md:mx-0">*/}
                 {/*    <form action="" className="p-5" onSubmit={handleSubmit}>*/}
@@ -314,13 +319,13 @@ export default function ProductData({slug}) {
                             {matchingProducts?.map((product) => (
                                 <a href={`/product/${product?.slug}`} key={product?.slug} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                     <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
-                                    <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>
+                                    <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">{product?.name}</div>
                                     <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                         <div>{product?.bottle}ml</div>
                                         <div>/</div>
                                         <div>{product?.alcoholPercentage}%</div>
                                     </div>
-                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">{Intl.NumberFormat('de-DE').format(product?.price) + 'đ'}</div>
+                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">{product?.price == 0 ? "Liên hệ" : Intl.NumberFormat('de-DE').format(product?.price) + 'đ'}</div>
                                 </a>
                             ))}
                         </div>
