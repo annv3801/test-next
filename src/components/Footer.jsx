@@ -56,7 +56,7 @@ const Footer = ({configData}) => {
                             </svg>
                             <div className="flex gap-1">
                                 <div>Facebook:</div>
-                                <a href={`${configData?.urlFacebook}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay</a>
+                                <a href={`${configData?.urlFacebook}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay Các Nước</a>
                             </div>
                         </div>
                         <div className="flex gap-5 mb-3">
@@ -65,7 +65,7 @@ const Footer = ({configData}) => {
                             </svg>
                             <div className="flex gap-1">
                                 <div>Messenger:</div>
-                                <a href={`//${configData?.messenger}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay</a>
+                                <a href={`//${configData?.messenger}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay Các Nước</a>
                             </div>
                         </div>
                         <div className="flex gap-5 mb-3">
