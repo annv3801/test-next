@@ -10,7 +10,7 @@ async function getData(params) {
             },
         });
 
-        return response.data.data;
+        return response?.data?.data;
     } catch (error) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);
@@ -20,13 +20,13 @@ async function getData(params) {
 export async function generateMetadata(params) {
     const data = await getData(params);
     return {
-        title: `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`,
-        description: `Chuyên mua bán rượu - ${data.name.toUpperCase()}`,
+        title: `RƯỢU DUTY SÂN BAY - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+        description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
         siteName: "RƯỢU DUTY SÂN BAY",
         url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
-            images: `${data.productImages[0].image} `,
+            images: `${data?.productImages[0].image != null ? data?.productImages[0].image : ""} `,
         },
     }
 }

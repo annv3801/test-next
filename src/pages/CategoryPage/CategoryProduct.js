@@ -85,6 +85,7 @@ export default function CategoryProduct({slug}) {
                         <a href={`/product/${product?.slug}`} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                             <img className="rounded-xl" src={product?.productImages[0]?.image} alt={product?.name} title={product?.name}/>
                             <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">{product?.name}</div>
+                            <div className='text-xl font-bold py-2'>{`(Duty sân bay ${product?.dutyFrom})`}</div>
                             <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
                                 <div>{product?.bottle}ml</div>
                                 <div>/</div>

@@ -12,7 +12,7 @@ async function getData(params) {
             },
         });
 
-        return response.data.data;
+        return response?.data?.data;
     } catch (error) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);
@@ -30,9 +30,9 @@ export async function generateMetadata(params) {
         images = 'https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
     } else {
         data = await getData(params);
-        title = `RƯỢU DUTY SÂN BAY - ${data.name.toUpperCase()}`;
-        description = `Chuyên mua bán rượu - ${data.name.toUpperCase()}`;
-        images = data ? `https://api.thumuaruouhn.online/Uploads/${data.image}?width=1920&height=700` : '';
+        title = `RƯỢU DUTY SÂN BAY - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
+        description = `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
+        images = data ? `https://api.thumuaruouhn.online/Uploads/${data?.image != null ? data?.image : ""}?width=1920&height=700` : '';
     }
     return {
         title: title,

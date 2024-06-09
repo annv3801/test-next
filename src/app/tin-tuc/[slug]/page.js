@@ -11,7 +11,7 @@ async function getData(params) {
                 }
             })
 
-        return response.data.data;
+        return response?.data?.data;
     } catch (error) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error(`There was an error retrieving the data: ${error}`);

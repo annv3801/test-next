@@ -90,7 +90,7 @@ export default function ProductData({slug}) {
         }
     }, []);
 
-    const matchingProducts = viewedProducts.filter(p => p.slug !== product.slug);
+    const matchingProducts = viewedProducts.filter(p => p.slug !== product?.slug);
     if (isLoading) {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -120,7 +120,9 @@ export default function ProductData({slug}) {
                     </div>
                     <div className="lg:w-[45%] m-5 lg:m-0">
                         <div className="">
-                            <h1 className="text-2xl font-bold uppercase">{product?.name}</h1>
+                            <h1 className="text-2xl font-extrabold uppercase">{product?.name}</h1>
+                            <div className='text-xl font-bold py-2'>{`(Duty sân bay ${product?.dutyFrom})`}</div>
+                            <div className="h-1 border-t-2 w-[75%] border-gray-300 py-1"></div>
                             <div className="flex gap-1 font-bold text-gray-500">
                                 <h3>{product?.bottle}ml</h3>
                                 /
