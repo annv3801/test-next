@@ -11,33 +11,33 @@ const Footer = ({configData}) => {
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
                         <h3 className="capitalize">Về chúng tôi</h3>
                         <div className="flex mb-3">
-                            <a href="/gioi-thieu" className="capitalize">Giới thiệu</a>
+                            <a href="/gioi-thieu" className="capitalize text-sm md:text-xl my-auto">Giới thiệu</a>
                         </div>
                         <div className="flex mb-3">
-                            <a href="/bao-mat-thong-tin" className="capitalize">Bảo mật thông tin</a>
+                            <a href="/bao-mat-thong-tin" className="capitalize text-sm md:text-xl my-auto">Bảo mật thông tin</a>
                         </div>
                         <div className="flex mb-3">
-                            <a href="/giao-hang-doi-tra" className="capitalize">Giao hàng & đổi trả</a>
+                            <a href="/giao-hang-doi-tra" className="capitalize text-sm md:text-xl my-auto">Giao hàng & đổi trả</a>
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
                         <h3 className="capitalize">Thông tin</h3>
                         <div className="flex mb-3">
-                            <a href="/thuong-hieu" className="capitalize">Thương Hiệu</a>
+                            <a href="/thuong-hieu" className="capitalize text-sm md:text-xl my-auto">Thương Hiệu</a>
                         </div>
                         <div className="flex mb-3">
-                            <a href="/san-pham-moi" className="capitalize">Sản Phẩm Mới</a>
+                            <a href="/san-pham-moi" className="capitalize text-sm md:text-xl my-auto">Sản Phẩm Mới</a>
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
                         <h3 className="capitalize">Thông Tin Liên hệ</h3>
-                        <div className="flex gap-5 mb-3">
+                        <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" className="fill-current my-auto" viewBox="0 0 384 512">
                                 <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
                             </svg>
-                            Hà Nội
+                            <div className="text-sm md:text-xl my-auto">Hà Nội</div>
                         </div>
-                        <div className="flex gap-5 mb-3">
+                        <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" className="fill-current my-auto" viewBox="0 0 512 512">
                                 <defs>
                                     <style>{".fa-secondary { opacity: .4 }"}</style>
@@ -46,43 +46,43 @@ const Footer = ({configData}) => {
                                 <path className="fa-primary" d="M68.4 14.8l-39 10.6C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l10.6-39C273.2 416.4 95.6 238.8 68.4 14.8zM505.7 412.3l4.9-17.8c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6l-25.1 30.7c55.4 33.4 118.4 55.4 185.8 62.9zM162.6 192.1L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96c-7.7-18.6-28-28.5-47.4-23.2L99.7 6.3c7.5 67.4 29.5 130.4 62.9 185.8z"/>
                             </svg>
                             <div className="flex gap-1">
-                                <div>Hotline - Zalo:</div>
-                                <a href={`tel:${configData?.phoneNumber}`} className="hover:text-blue-500">{configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}</a>
+                                <div className="text-sm md:text-xl my-auto">Hotline - Zalo:</div>
+                                <a href={`tel:${configData?.phoneNumber}`} className="hover:text-blue-500 text-sm md:text-xl my-auto">{configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}</a>
                             </div>
                         </div>
-                        <div className="flex gap-5 mb-3">
+                        <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="w-5 h-5 fill-current group-hover:text-white transition-colors duration-500 ease-in-out my-auto">
                                 <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/>
                             </svg>
                             <div className="flex gap-1">
-                                <div>Facebook:</div>
-                                <a href={`${configData?.urlFacebook}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay Các Nước</a>
+                                <div className="text-sm md:text-xl my-auto">Facebook:</div>
+                                <a href={`${configData?.urlFacebook}`} target="_blank" className="hover:text-blue-500 text-sm md:text-xl my-auto">Rượu Duty Sân Bay Các Nước</a>
                             </div>
                         </div>
-                        <div className="flex gap-5 mb-3">
+                        <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current my-auto group-hover:text-white transition-colors duration-500 ease-in-out">
                                 <path d="M256.6 8C116.5 8 8 110.3 8 248.6c0 72.3 29.7 134.8 78.1 177.9 8.4 7.5 6.6 11.9 8.1 58.2A19.9 19.9 0 0 0 122 502.3c52.9-23.3 53.6-25.1 62.6-22.7C337.9 521.8 504 423.7 504 248.6 504 110.3 396.6 8 256.6 8zm149.2 185.1l-73 115.6a37.4 37.4 0 0 1 -53.9 9.9l-58.1-43.5a15 15 0 0 0 -18 0l-78.4 59.4c-10.5 7.9-24.2-4.6-17.1-15.7l73-115.6a37.4 37.4 0 0 1 53.9-9.9l58.1 43.5a15 15 0 0 0 18 0l78.4-59.4c10.4-8 24.1 4.5 17.1 15.6z"/>
                             </svg>
                             <div className="flex gap-1">
-                                <div>Messenger:</div>
-                                <a href={`//${configData?.messenger}`} target="_blank" className="hover:text-blue-500">Rượu Duty Sân Bay Các Nước</a>
+                                <div className="text-sm md:text-xl my-auto">Messenger:</div>
+                                <a href={`//${configData?.messenger}`} target="_blank" className="hover:text-blue-500 text-sm md:text-xl my-auto">Rượu Duty Sân Bay Các Nước</a>
                             </div>
                         </div>
-                        <div className="flex gap-5 mb-3">
+                        <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current group-hover:text-white transition-colors duration-500 ease-in-out my-auto">
                                 <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/>
                             </svg>
                             <div className="flex gap-1">
-                                <div>Email:</div>
-                                <a href={`mailto:${configData?.email}`} target="_blank" className="hover:text-blue-500">{configData?.email}</a>
+                                <div className="text-sm md:text-xl my-auto">Email:</div>
+                                <a href={`mailto:${configData?.email}`} target="_blank" className="hover:text-blue-500 text-sm md:text-xl my-auto">{configData?.email}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="fixed bottom-2 md:bottom-6 right-4 md:right-6 rounded-full flex flex-col items-center justify-center gap-2 z-20">
-                <a href={`https://zalo.me/${configData?.phoneNumber}`} className="bg-blue-500 rounded-full h-14 w-14 flex items-center justify-center" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-14 md:w-14 h-14 md:h-14" viewBox="0 0 161.5 161.5"><title>Zalo logo</title>
+                <a href={`https://zalo.me/${configData?.phoneNumber}`} className="bg-blue-500 rounded-full w-10 md:w-14 h-10 md:h-14 flex items-center justify-center" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-10 md:w-14 h-10 md:h-14" viewBox="0 0 161.5 161.5"><title>Zalo logo</title>
                         <path d="M504.54,431.79h14.31c19.66,0,31.15,2.89,41.35,8.36a56.65,56.65,0,0,1,23.65,23.65c5.47,10.2,8.36,21.69,8.36,41.35V519.4c0,19.66-2.89,31.15-8.36,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-19.66,0-31.15-2.89-41.35-8.36a56.65,56.65,0,0,1-23.65-23.65c-5.47-10.2-8.36-21.69-8.36-41.35V505.14c0-19.66,2.89-31.15,8.36-41.35a56.65,56.65,0,0,1,23.65-23.65C473.39,434.68,484.94,431.79,504.54,431.79Z" transform="translate(-431.25 -431.25)"
                               style={{fill: '#0068ff'}}/>
                         <path d="M592.21,517v2.35c0,19.66-2.89,31.15-8.35,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-16.09,0-26.7-1.93-35.62-5.63L454.29,572Z" transform="translate(-431.25 -431.25)" style={{fill: '#001a33', opacity: '0.11999999731779099', isolation: 'isolate'}}/>
@@ -94,16 +94,16 @@ const Footer = ({configData}) => {
                         <path d="M526.17,525.54h3.62V495.93h-6.33v27A2.72,2.72,0,0,0,526.17,525.54Z" transform="translate(-431.25 -431.25)" style={{fill: '#0068ff'}}/>
                     </svg>
                 </a>
-                <a href={`//${configData?.messenger}`} className="bg-blue-500 rounded-full h-14 w-14 flex items-center justify-center" target="_blank">
+                <a href={`//${configData?.messenger}`} className="bg-blue-500 rounded-full w-10 md:w-14 h-10 md:h-14 flex items-center justify-center" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-7 md:w-9 h-7 md:h-9">
                         <path fill="#ffffff" d="M256.6 8C116.5 8 8 110.3 8 248.6c0 72.3 29.7 134.8 78.1 177.9 8.4 7.5 6.6 11.9 8.1 58.2A19.9 19.9 0 0 0 122 502.3c52.9-23.3 53.6-25.1 62.6-22.7C337.9 521.8 504 423.7 504 248.6 504 110.3 396.6 8 256.6 8zm149.2 185.1l-73 115.6a37.4 37.4 0 0 1 -53.9 9.9l-58.1-43.5a15 15 0 0 0 -18 0l-78.4 59.4c-10.5 7.9-24.2-4.6-17.1-15.7l73-115.6a37.4 37.4 0 0 1 53.9-9.9l58.1 43.5a15 15 0 0 0 18 0l78.4-59.4c10.4-8 24.1 4.5 17.1 15.6z"/>
                     </svg>
                 </a>
-                <a href={`tel:${configData?.phoneNumber}`} className="group bg-orange-500 rounded-full h-14 w-14 flex items-center justify-center relative" target="_blank">
+                <a href={`tel:${configData?.phoneNumber}`} className="group bg-orange-500 rounded-full w-10 md:w-14 h-10 md:h-14 flex items-center justify-center relative" target="_blank">
                     <div className="absolute right-16 bg-red-600 ml-2 bg-white p-2 rounded-lg hidden group-hover:block border-blue-400 border-2">
                         {configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 md:w-7 h-6 md:h-7 " viewBox="0 0 512 512">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 h-5 md:h-7 " viewBox="0 0 512 512">
                         <path fill="#ffffff"
                               d="M280 0C408.1 0 512 103.9 512 232c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-101.6-82.4-184-184-184c-13.3 0-24-10.7-24-24s10.7-24 24-24zm8 192a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32-72c0-13.3 10.7-24 24-24c75.1 0 136 60.9 136 136c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-48.6-39.4-88-88-88c-13.3 0-24-10.7-24-24zM117.5 1.4c19.4-5.3 39.7 4.6 47.4 23.2l40 96c6.8 16.3 2.1 35.2-11.6 46.3L144 207.3c33.3 70.4 90.3 127.4 160.7 160.7L345 318.7c11.2-13.7 30-18.4 46.3-11.6l96 40c18.6 7.7 28.5 28 23.2 47.4l-24 88C481.8 499.9 466 512 448 512C200.6 512 0 311.4 0 64C0 46 12.1 30.2 29.5 25.4l88-24z"/>
                     </svg>
