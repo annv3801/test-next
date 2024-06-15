@@ -152,7 +152,7 @@ export default function Header({configData}) {
             }
             <div className="bg-[#0090d0]">
                 <div className='flex lg:justify-between relative py-3 sm:px-10 px-4 border-gray-200 border-b min-h-[75px] container mx-auto'>
-                    <Link href="/" className="my-auto"><img src="/icon/Screenshot_5.png" alt="logo"
+                    <Link href="/" className="my-auto w-[180px]"><img src="/icon/Screenshot_5.png" alt="logo"
                                                          className='h-10 '/>
                     </Link>
                     <div className='bg-white flex flex-col rounded-3xl max-lg:hidden relative z-20'>
@@ -193,7 +193,7 @@ export default function Header({configData}) {
                         )}
                     </div>
 
-                    <div className="lg:flex items-center hidden">
+                    <div className="lg:flex items-center hidden w-[180px]">
                         <Link href={`tel:${configData?.phoneNumber}`} className="relative flex text-white bg-[#004275] rounded-3xl">
                             <div className="p-2 bg-white rounded-full mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" className="fill-current my-auto" style={{color: '#0090d0'}} viewBox="0 0 512 512">
