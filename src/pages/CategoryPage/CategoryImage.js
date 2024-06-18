@@ -18,7 +18,7 @@ export default function CategoryImage({slug}) {
                 setCategory(productData);
             })
             .catch((error) => {
-                console.error(`There was an error retrieving: ${error}`);
+                console.error(`There was an error : ${error}`);
             });
     }, [slug]);
     return (
