@@ -151,7 +151,7 @@ export default function Header({configData}) {
                 </div>
             }
             <div className="bg-[#0090d0]">
-                <div className='flex lg:justify-between relative py-3 sm:px-10 px-4 border-gray-200 border-b min-h-[75px] container mx-auto'>
+                <div className='flex lg:justify-between relative py-3 sm:px-10 px-4 border-gray-200 min-h-[75px] container mx-auto'>
                     <Link href="/" className="my-auto w-[180px]"><img src="/icon/Screenshot_5.png" alt="logo"
                                                          className='h-10 '/>
                     </Link>

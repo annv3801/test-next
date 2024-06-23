@@ -7,6 +7,7 @@ export default async function sitemap() {
         url: `https://ruoudutysanbay.com/product/${data.slug}`
     }))
     return [
-        ...productEntries
+        ...productEntries,
+        'https://ruoudutysanbay.com'
     ]
 }

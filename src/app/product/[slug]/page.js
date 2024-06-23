@@ -20,9 +20,9 @@ async function getData(params) {
 export async function generateMetadata(params) {
     const data = await getData(params);
     return {
-        title: `RƯỢU DUTY SÂN BAY - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+        title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
         description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-        siteName: "RƯỢU DUTY SÂN BAY",
+        siteName: "Rượu Duty Sân Bay",
         url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
