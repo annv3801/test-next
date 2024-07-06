@@ -21,6 +21,24 @@ export default function Header({configData}) {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState(null);
     const [activeSubmenuItem, setActiveSubmenuItem] = useState(null);
+    const isMobile = () => window.innerWidth <= 768;
+    const handleMouseEnter = () => {
+        if (!isDropdownOpen && window.innerWidth > 768) { // Only apply hover effect on non-mobile devices
+            setDropdownOpen(true);
+        }
+        if (!isMobile()) {
+            setDropdownOpen(true);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (isDropdownOpen && window.innerWidth > 768) { // Only apply hover effect on non-mobile devices
+            setDropdownOpen(false);
+        }
+        if (!isMobile()) {
+            setDropdownOpen(false);
+        }
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -83,9 +101,21 @@ export default function Header({configData}) {
         };
     }, []);
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
+    const toggleDropdown = (event) => {
+        event.stopPropagation();
+        setDropdownOpen(prev => !prev);
     };
+
+    const handleMobileClick = (event) => {
+        if (isMobile()) {
+            event.preventDefault(); // Prevent default link behavior on mobile.
+            toggleDropdown(event);
+        } else {
+            // For non-mobile devices, simply toggle the dropdown.
+            toggleDropdown(event);
+        }
+    };
+
 
     const toggleMenu = useCallback(() => {
         const newMenuState = !isMenuOpen;
@@ -153,7 +183,7 @@ export default function Header({configData}) {
             <div className="bg-[#0090d0]">
                 <div className='flex lg:justify-between relative py-3 sm:px-10 px-4 border-gray-200 min-h-[75px] container mx-auto'>
                     <Link href="/" className="my-auto w-[180px]"><img src="/icon/Screenshot_5.png" alt="logo"
-                                                         className='h-10 '/>
+                                                                      className='h-10 '/>
                     </Link>
                     <div className='bg-white flex flex-col rounded-3xl max-lg:hidden relative z-20'>
                         <div className="flex my-auto">
@@ -176,8 +206,8 @@ export default function Header({configData}) {
                             <div className="dropdown-list absolute w-full lg:min-w-[600px] left-0 mt-14 bg-white shadow-lg rounded-md text-left flex flex-col">
                                 {items.map((item, index) => (
                                     <Link href={`/product/${item.slug}`}
-                                       className={`dropdown-item p-2 h-full hover:bg-blue-200 ${index === 0 ? 'rounded-t-md' : ''} ${index === items.length - 1 ? 'rounded-b-md' : ''}`}
-                                       key={index}>
+                                          className={`dropdown-item p-2 h-full hover:bg-blue-200 ${index === 0 ? 'rounded-t-md' : ''} ${index === items.length - 1 ? 'rounded-b-md' : ''}`}
+                                          key={index}>
                                         <div className="flex gap-3">
                                             <div>
                                                 <img src={`${item.productImages[0].image}?height=80`} alt=""/>
@@ -222,7 +252,7 @@ export default function Header({configData}) {
             <div className='flex flex-wrap justify-center px-10 lg:py-3 relative z-10'>
                 <ul className={`lg:flex z-50 lg:translate-x-0 lg:relative lg:w-auto lg:overflow-visible lg:bg-transparent lg:space-y-0 max-lg:space-y-3 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} px-5 py-6 md:px-0 md:py-0 fixed inset-y-0 left-0 w-4/5 transform transition-transform duration-200 ease-in-out bg-white h-full overflow-auto`}>
                     <Link href="/" className="my-auto md:hidden"><img src="/icon/Screenshot_5.png" alt="logo"
-                                                                   className='h-10 '/></Link>
+                                                                      className='h-10 '/></Link>
                     <div
                         className="overflow-y-auto md:overflow-y-visible max-h-[85%] md:max-h-none lg:flex lg:space-y-0 gap-10 max-lg:space-y-3">
                         {
@@ -235,28 +265,23 @@ export default function Header({configData}) {
 
                                     return (
                                         <li key={i}
-                                            className={hasSubMenuItems ? 'group max-lg:border-b max-lg:py-2 relative' : 'max-lg:border-b max-lg:pb-2 pt-4 md:pt-0'}>
-                                            {hasSubMenuItems ?
-                                                (<div onClick={toggleDropdown}
-                                                      className='hover:text-[#007bff] hover:fill-[#007bff] text-gray-600 font-semibold text-[15px] block'>
-
+                                            className={hasSubMenuItems ? 'group max-lg:border-b max-lg:py-2 relative' : 'max-lg:border-b max-lg:pb-2 pt-4 md:pt-0'}
+                                        >
+                                            {hasSubMenuItems ? (
+                                                <div onClick={handleMobileClick}  className='hover:text-[#007bff] hover:fill-[#007bff] text-gray-600 font-semibold text-[15px] block'>
                                                     {topLevelItem.name}
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                         className="ml-1 inline-block" viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
-                                                            data-name="16" data-original="#000000"/>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" className="ml-1 inline-block" viewBox="0 0 24 24">
+                                                        <path d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z" data-name="16" data-original="#000000"/>
                                                     </svg>
-
-                                                    {isDropdownOpen && (<ul
-                                                            className='block md:absolute hidden group-hover:block md:shadow-lg bg-blue-300  md:bg-white space-y-2 px-3 md:px-6 pb-1 pt-1 md:pt-6 mt-3 md:mt-0 lg:top-5 max-lg:top-8 left-0 min-w-[250px] z-50 rounded-lg md:rounded-b-xl'>
+                                                    {isDropdownOpen && (
+                                                        <ul className='block md:absolute hidden group-hover:block md:shadow-lg bg-blue-300 md:bg-white space-y-2 px-3 md:px-6 pb-1 pt-1 md:pt-6 mt-3 md:mt-0 lg:top-5 max-lg:top-8 left-0 min-w-[250px] z-50 rounded-lg md:rounded-b-xl'>
                                                             {subMenuItems.map((subItem, j) =>
                                                                 <li key={j} className='md:bg-white md:rounded-none p-2 md:p-0 border-b md:py-3'>
                                                                     <CustomLink
                                                                         to={`/${subItem.slug}`}
                                                                         customUrl={subItem.customUrl}
-                                                                        onClick={() => {
+                                                                        onClick={(e) => {
+                                                                            e.stopPropagation();
                                                                             setActiveMenuItem(topLevelItem.slug);
                                                                             setActiveSubmenuItem(subItem.slug);
                                                                             closeMenu();
@@ -272,21 +297,23 @@ export default function Header({configData}) {
                                                             )}
                                                         </ul>
                                                     )}
-                                                </div>) :
-                                                (<CustomLink
-                                                        to={`/${topLevelItem.slug}`}
-                                                        customUrl={topLevelItem.customUrl}
-                                                        onClick={() => {
-                                                            setActiveMenuItem(topLevelItem.slug);
-                                                            setActiveSubmenuItem(null);
-                                                            closeMenu();
-                                                        }}
-                                                        isActive={activeMenuItem == topLevelItem.slug}
-                                                    >
-                                                        {topLevelItem.name}
-                                                    </CustomLink>
-                                                )}
+                                                </div>
+                                            ) : (
+                                                <CustomLink
+                                                    to={`/${topLevelItem.slug}`}
+                                                    customUrl={topLevelItem.customUrl}
+                                                    onClick={() => {
+                                                        setActiveMenuItem(topLevelItem.slug);
+                                                        setActiveSubmenuItem(null);
+                                                        closeMenu();
+                                                    }}
+                                                    isActive={activeMenuItem == topLevelItem.slug}
+                                                >
+                                                    {topLevelItem.name}
+                                                </CustomLink>
+                                            )}
                                         </li>
+
                                     )
                                 })
                         }

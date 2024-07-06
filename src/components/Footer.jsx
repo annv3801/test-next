@@ -47,7 +47,7 @@ const Footer = ({configData}) => {
                             </svg>
                             <div className="flex gap-1">
                                 <div className="text-sm md:text-base my-auto">Hotline - Zalo:</div>
-                                <a href={`tel:${configData?.phoneNumber}`} className="hover:text-blue-500 text-sm md:text-base my-auto">{configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}</a>
+                                <a href={`tel:${configData?.phoneNumber}`} className="hover:text-blue-500 text-sm md:text-base my-auto">{configData?.phoneNumber?.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}</a>
                             </div>
                         </div>
                         <div className="flex gap-2 md:gap-5 mb-3">
@@ -103,7 +103,7 @@ const Footer = ({configData}) => {
                     <div className="circle-animation"></div>
                     <a href={`tel:${configData?.phoneNumber}`} className="group bg-[#e60808b3] rounded-full w-12 h-12 flex items-center justify-center relative shadow-none box-shadow: 0 0 #c31d1d mb-3" target="_blank">
                         <div className="absolute right-16 bg-red-600 ml-2 bg-white p-2 rounded-lg hidden group-hover:block border-blue-400 border-2 ">
-                            {configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}
+                            {configData?.phoneNumber?.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 animation" viewBox="0 0 512 512">
                             <path fill="#ffffff"

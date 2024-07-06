@@ -197,3 +197,40 @@ figure.image.image_resized{
         box-shadow: 0 0 0 0 transparent
     }
 }
+
+/* styles.css or a similar file */
+.dropdown-style {
+    min-width: max-content;
+    width: auto;
+}
+
+@media (max-width: 767px) { /* Adjusts for tablets and below */
+    .dropdown-style {
+        min-width: unset; /* Resets min-width for smaller devices */
+        width: 100%; /* Full width on smaller devices */
+    }
+}
+
+@media (min-width: 768px) { /* Example for md breakpoint */
+    .dropdown-item:last-child, .dropdown-item:nth-last-child(2), .dropdown-item:nth-last-child(3) {
+        border-bottom: none;
+    }
+}
+
+.dropdown-animation {
+    transition: all 1s ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dropdown-animation.active {
+    transform: scaleY(1);
+    height: auto;
+opacity: 1;
+    visibility: visible;
+}
+
+
