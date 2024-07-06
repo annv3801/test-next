@@ -21,6 +21,24 @@ export default function Header({configData}) {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState(null);
     const [activeSubmenuItem, setActiveSubmenuItem] = useState(null);
+    const [style, setStyle] = useState({});
+
+    useEffect(() => {
+        const updateStyle = () => {
+            if (window.innerWidth > 768) { // Adjust this value based on your breakpoint needs
+                setStyle({ minWidth: 'max-content', width: 'auto' });
+            } else {
+                setStyle({ minWidth: '100%', width: '100%' });
+            }
+        };
+
+        updateStyle(); // Call when component mounts
+        window.addEventListener('resize', updateStyle); // Adjust on window resize
+
+        // Clean up listener
+        return () => window.removeEventListener('resize', updateStyle);
+    }, []);
+
     const isMobile = () => window.innerWidth <= 768;
     const handleMouseEnter = () => {
         if (!isDropdownOpen && window.innerWidth > 768) { // Only apply hover effect on non-mobile devices
@@ -274,29 +292,31 @@ export default function Header({configData}) {
                                                         <path d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z" data-name="16" data-original="#000000"/>
                                                     </svg>
                                                     {isDropdownOpen && (
-                                                        <ul className='block md:absolute hidden group-hover:block md:shadow-lg bg-blue-300 md:bg-white space-y-2 px-3 md:px-6 pb-1 pt-1 md:pt-6 mt-3 md:mt-0 lg:top-5 max-lg:top-8 left-0 min-w-[250px] z-50 rounded-lg md:rounded-b-xl'>
-                                                            {subMenuItems.map((subItem, j) =>
-                                                                <li key={j} className='md:bg-white md:rounded-none p-2 md:p-0 border-b md:py-3'>
-                                                                    <CustomLink
-                                                                        to={`/${subItem.slug}`}
-                                                                        customUrl={subItem.customUrl}
-                                                                        onClick={(e) => {
-                                                                            e.stopPropagation();
-                                                                            setActiveMenuItem(topLevelItem.slug);
-                                                                            setActiveSubmenuItem(subItem.slug);
-                                                                            closeMenu();
-                                                                        }}
-                                                                        isActive={
-                                                                            activeMenuItem == topLevelItem.slug &&
-                                                                            activeSubmenuItem == subItem.slug
-                                                                        }
-                                                                    >
-                                                                        {subItem.name}
-                                                                    </CustomLink>
-                                                                </li>
-                                                            )}
+                                                        <ul style={style} className='block md:absolute hidden group-hover:block md:shadow-lg bg-white space-y-2 px-2 md:px-5 py-2 md:py-3 md:mt-0 lg:top-5 max-lg:top-8 left-0 min-w-[250px] z-50 rounded-lg md:rounded-b-xl'>
+                                                            <div className='grid grid-cols-1 md:grid-cols-3 w-full'>
+                                                                {subMenuItems.map((subItem, j) =>
+                                                                    <li key={j} className={`px-3  ${j === subMenuItems.length - 1 ? 'border-b-0 pt-3 pb-1' : 'border-b py-3'} md:border-b`}>
+                                                                        <CustomLink
+                                                                            to={`/${subItem.slug}`}
+                                                                            customUrl={subItem.customUrl}
+                                                                            onClick={(e) => {
+                                                                                e.stopPropagation();
+                                                                                setActiveMenuItem(topLevelItem.slug);
+                                                                                setActiveSubmenuItem(subItem.slug);
+                                                                                closeMenu();
+                                                                            }}
+                                                                            isActive={
+                                                                                activeMenuItem == topLevelItem.slug &&
+                                                                                activeSubmenuItem == subItem.slug
+                                                                            }
+                                                                        >
+                                                                            {subItem.name}
+                                                                        </CustomLink>
+                                                                    </li>
+                                                                )}
+                                                            </div>
                                                         </ul>
-                                                    )}
+                                                        )}
                                                 </div>
                                             ) : (
                                                 <CustomLink

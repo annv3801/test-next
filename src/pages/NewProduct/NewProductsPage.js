@@ -38,7 +38,7 @@ export default function NewProductsPage() {
         <div className="relative">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0">
                 <h1 className="text-3xl font-bold">Sản Phẩm Mới</h1>
-                <div className="flex justify-between">
+                <div className="flex justify-between mb-3">
                     <div></div>
                     <div className="px-5 text-right my-auto">
                         {total > currentPage * pageSize ? (

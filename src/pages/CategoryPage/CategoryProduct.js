@@ -58,7 +58,7 @@ export default function CategoryProduct({slug}) {
     return (
         <div className="relative">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0">
-                <div className="flex justify-between">
+                <div className="flex justify-between mb-3">
                     <CustomSelect
                         defaultValue="asc"
                         onChange={setSortOption}
