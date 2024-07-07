@@ -2,7 +2,7 @@
 const nextConfig = {
     poweredByHeader: false,
     images: {
-        domains: ['api.thumuaruouhn.online'],
+        domains: ['api.ruoudutysanbay.com'],
     },
     webpack: (config, options) => {
         config.module.rules.push({

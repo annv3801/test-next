@@ -8,7 +8,7 @@ export default function DeliveryPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        axios.get('https://api.thumuaruouhn.online/Blog/View-Blog/DELIVERY')
+        axios.get('https://api.ruoudutysanbay.com/Blog/View-Blog/DELIVERY')
             .then((res) => {
                 const listConfig = res.data?.data;
                 setProducts(listConfig);

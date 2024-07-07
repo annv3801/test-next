@@ -30,7 +30,7 @@ export default function CategoryProduct({slug}) {
     const [sortOption, setSortOption] = useState('asc');
     const pageSize = 30;
     useEffect(() => {
-        axios.post(`https://api.thumuaruouhn.online/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
+        axios.post(`https://api.ruoudutysanbay.com/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
             pageSize: pageSize,
             currentPage: currentPage,
             searchByFields: [],

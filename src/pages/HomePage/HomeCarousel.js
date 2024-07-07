@@ -5,7 +5,7 @@ import {Carousel} from "antd";
 
 async function getData() {
     try {
-        const res = await axios.post('https://api.thumuaruouhn.online/Slide/View-List-Slides', {
+        const res = await axios.post('https://api.ruoudutysanbay.com/Slide/View-List-Slides', {
                 pageSize: 10,
                 currentPage: 1,
                 searchByFields: [],
@@ -48,7 +48,7 @@ export default function HomeCarousel() {
         <Carousel autoplay>
             {data.map((s) => {
                 return (
-                    <img src={`https://api.thumuaruouhn.online/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
+                    <img src={`https://api.ruoudutysanbay.com/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
                 );
             })}
         </Carousel>

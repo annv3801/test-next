@@ -9,7 +9,7 @@ export default function NewProductsPage() {
     const [total, setTotal] = useState(30);
     const pageSize = 30;
     useEffect(() => {
-        axios.post(`https://api.thumuaruouhn.online/LiquorExchange/Product/Get-List-Products`, {
+        axios.post(`https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-List-Products`, {
             pageSize: pageSize,
             currentPage: currentPage,
             searchByFields: [],

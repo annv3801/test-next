@@ -9,7 +9,7 @@ export default function ProductData({slug}) {
     const [viewedProducts, setViewedProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://api.thumuaruouhn.online/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
+        axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
             {
                 headers: {
                     'Accept': 'text/plain',

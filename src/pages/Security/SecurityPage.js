@@ -8,7 +8,7 @@ export default function SecurityPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        axios.get('https://api.thumuaruouhn.online/Blog/View-Blog/SECURITY')
+        axios.get('https://api.ruoudutysanbay.com/Blog/View-Blog/SECURITY')
             .then((res) => {
                 const listConfig = res.data?.data;
                 setProducts(listConfig);

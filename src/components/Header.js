@@ -87,7 +87,7 @@ export default function Header({configData}) {
 
                 const result = await axios({
                     method: 'post',
-                    url: 'https://api.thumuaruouhn.online/LiquorExchange/Product/Get-List-Products',
+                    url: 'https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-List-Products',
                     data: data
                 });
 
@@ -175,7 +175,7 @@ export default function Header({configData}) {
     useEffect(() => {
         const fetchMenuItems = async () => {
             try {
-                const response = await axios.post('https://api.thumuaruouhn.online/LiquorExchange/Category/Get-List-Category', {
+                const response = await axios.post('https://api.ruoudutysanbay.com/LiquorExchange/Category/Get-List-Category', {
                     pageSize: 100,
                     currentPage: 1,
                     searchByFields: [],

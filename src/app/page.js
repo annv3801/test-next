@@ -13,7 +13,7 @@ export async function generateMetadata() {
         keyword: ["Rượu", "Ruou", "Ruou Duty", "Ruợu Duty", "Rượu Duty Sân Bay", "Ruou Duty San Bay", "Ruou duty san bay chinh hang", "Rượu Duty Sân Bay Chính hãng", "Chivas", "Maccallan", "Ruợu ngoại", "Ruou ngoai", "Ruợu ngoại chính hãng", "Ruou ngoai chinh hang"],
         type: "website",
         openGraph: {
-            images: "https://api.thumuaruouhn.online/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg",
+            images: "https://api.ruoudutysanbay.com/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg",
         },
     }
 }

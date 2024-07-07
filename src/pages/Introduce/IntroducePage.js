@@ -11,7 +11,7 @@ export default function IntroducePage() {
     const pageSize = 30;
 
     useEffect(() => {
-        axios.get('https://api.thumuaruouhn.online/Blog/View-Blog/INTRODUCE')
+        axios.get('https://api.ruoudutysanbay.com/Blog/View-Blog/INTRODUCE')
             .then((res) => {
                 const listConfig = res.data?.data;
                 setProducts(listConfig);

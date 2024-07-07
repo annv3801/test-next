@@ -3,7 +3,7 @@ import axios from "axios";
 async function getData(params) {
     try {
         const slug = params.params.slug;
-        const response = await axios.get(`https://api.thumuaruouhn.online/LiquorExchange/News/Get-News-By-Slug/${slug}`,
+        const response = await axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/News/Get-News-By-Slug/${slug}`,
             {
                 headers: {
                     'Accept': 'text/plain',
