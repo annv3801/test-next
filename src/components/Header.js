@@ -251,7 +251,7 @@ export default function Header({configData}) {
                             </div>
 
                             <div className="items-center hidden md:block text-center my-auto mx-auto mr-4">
-                                {configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}
+                                {configData?.phoneNumber?.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}
                             </div>
                         </Link>
                     </div>
@@ -341,7 +341,7 @@ export default function Header({configData}) {
                     <div className="md:hidden absolute bottom-4 left-4">
                         <Link href={`tel:${configData?.phoneNumber}`} className="relative hover:text-blue-500 flex gap-5">
                             <div className="items-center hidden md:block">
-                                {configData?.phoneNumber?.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3")}
+                                {configData?.phoneNumber?.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}
                             </div>
                         </Link>
                     </div>
