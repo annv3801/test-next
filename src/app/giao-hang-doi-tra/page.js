@@ -2,9 +2,9 @@ import DeliveryPage from "@/pages/Delivery/DeliveryPage";
 
 export async function generateMetadata() {
     return {
-        title: `RƯỢU DUTY SÂN BAY - SẢN PHẨM MỚI`,
-        description: `Chuyên mua bán rượu - SẢN PHẨM MỚI`,
-        siteName: "RƯỢU DUTY SÂN BAY",
+        title: `Rượu Duty Sân Bay - Sản phẩm mới`,
+        description: `Chuyên mua bán rượu - Sản phẩm mới`,
+        siteName: "Rượu Duty Sân Bay",
         url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {

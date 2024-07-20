@@ -37,11 +37,13 @@ export default function HomeBestSelling() {
 
     return (
         <div className="relative">
-            <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative">
+            <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative w-full">
                 <div className="heading text-center">
                     <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10 z-10">Sản phẩm bán chạy</h2>
                 </div>
-                <ProductCarousel products={products}></ProductCarousel>
+                <div className="w-full">
+                    <ProductCarousel products={products}></ProductCarousel>
+                </div>
             </div>
         </div>
     );

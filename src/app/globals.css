@@ -42,6 +42,41 @@ p {margin:0}
     .parent:hover .dropdown {
         display: block;
     }
+
+    .slick-arrow{
+        background-color: #c4c4c5 !important;
+        z-index: 30;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 4px;
+        position: relative;
+    }
+
+    :where(.css-dev-only-do-not-override-kghr11).ant-carousel .slick-prev {
+        inset-inline-start: 0px;
+    }
+
+    :where(.css-dev-only-do-not-override-kghr11).ant-carousel .slick-next {
+        inset-inline-end: 0px;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        color: white;
+    }
+
+    .slick-arrow:hover {
+        background-color: #6eb0f3 !important;
+    }
 }
 
 .heading {
@@ -62,10 +97,6 @@ p {margin:0}
 .no-scroll {
     overflow: hidden;
     height: 100%;
-}
-
-.slider-container {
-    width: calc(100% - 4px);
 }
 
 @media (max-width: 1024px) {
@@ -109,7 +140,6 @@ figure.image.image_resized{
 .slider-container .ant-carousel .slick-next {
     display: block !important;
     color: black !important;
-    font-size: 20px !important;
     top: 40% !important;
     transform: translateY(-50%) !important;
 }
@@ -229,8 +259,25 @@ figure.image.image_resized{
 .dropdown-animation.active {
     transform: scaleY(1);
     height: auto;
-opacity: 1;
+    opacity: 1;
     visibility: visible;
 }
 
+.custom-carousel .slick-slide {
+    width: auto !important; /* Override the fixed width */
+    margin-right: 0px;
+}
 
+.custom-carousel .slick-list {
+    display: flex;
+    align-items: center;
+}
+
+.custom-carousel .slick-track {
+    display: flex;
+    gap: 12px; /* Add gap between items */
+}
+
+.custom-carousel .slick-slide:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}

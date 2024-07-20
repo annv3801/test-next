@@ -1,74 +1,39 @@
 'use client'
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import {Carousel} from "antd";
 
-function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} nextArrow`}
-            style={{ ...style, display: "block", color: "black", fontSize: '24px', top: '40%', transform: 'translateY(-50%)' }}
-            onClick={onClick}
-        >
-            <FaChevronRight />
-        </div>
-    );
-}
-
-function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} prevArrow`}
-            style={{ ...style, display: "block", color: "black", fontSize: '24px', top: '40%', transform: 'translateY(-50%)' }}
-            onClick={onClick}
-        >
-            <FaChevronLeft />
-        </div>
-    );
-}
 export default function ProductCarousel({products}) {
-    const settings = {
-        dots: false,
+    const CarouselSettings = {
         infinite: true,
-        autoplay: false,
-        autoplaySpeed: 2000,
-        slidesToShow: 5,
+        slidesToShow: Math.min(5, products.length),
         slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1024, // For large screens
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: Math.min(5, products.length),
                     slidesToScroll: 1,
-                    initialSlide: 1,
-                },
+                }
             },
             {
-                breakpoint: 464,
+                breakpoint: 768, // For medium screens
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: Math.min(3, products.length),
                     slidesToScroll: 1,
-                    initialSlide: 1,
-                },
+                }
             },
             {
-                breakpoint: 0,
+                breakpoint: 480, // For small screens
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: Math.min(2, products.length),
                     slidesToScroll: 1,
-                },
-            },
-        ],
+                }
+            }
+        ]
     };
     return (
         <div className="slider-container z-18">
-            <Slider {...settings}>
+            <Carousel {...CarouselSettings} arrows >
                 {products?.map((_, index) => (
                     <div key={index}>
                         <a href={`/product/${_?.slug}`} className="bg-white flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out mx-1 md:mx-3">
@@ -86,7 +51,7 @@ export default function ProductCarousel({products}) {
                         </a>
                     </div>
                 ))}
-            </Slider>
+            </Carousel>
         </div>
     );
 };

@@ -3,10 +3,13 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import ProductConfigData from "@/pages/ProductPage/ProductConfigData";
 import {Spin, Carousel, Image} from "antd";
+
 export default function ProductData({slug}) {
     const [isLoading, setIsLoading] = useState(true);
     const [product, setProduct] = useState({}); // Initialize product as an empty object
     const [viewedProducts, setViewedProducts] = useState([]);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
 
     useEffect(() => {
         axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
@@ -99,25 +102,84 @@ export default function ProductData({slug}) {
             </div>
         );
     }
+
+
+    // Check if there are any product images
+    const productImages = product?.productImages || [];
+
+    const handleSmallCarouselChange = (index) => {
+        setCurrentImageIndex(index);
+    };
+
+    const handleLargeCarouselChange = (index) => {
+        setCurrentImageIndex(index);
+    };
+
+    if (productImages.length === 0) {
+        return null; // or return some placeholder content
+    }
+
+    const smallCarouselSettings = {
+        infinite: true,
+        slidesToShow: Math.min(5, productImages.length),
+        slidesToScroll: 1,
+        afterChange: handleSmallCarouselChange,
+        arrows: productImages.length > 5
+    };
+
     return (
         <div>
             <div className="container mx-auto lg:my-7">
                 {/*Top*/}
                 <div className="lg:flex lg:justify-between block gap-10">
-                    <div className="w-full lg:w-[35%]">
-                        <Carousel>
-                            {product?.productImages?.map((s, index) => (
-                                <div className="w-full max-h-[650px] flex justify-center object-contain" key={index}>
+                    <div className="lg:w-[35%]">
+                        <Carousel
+                            arrows
+                            infinite
+                            className="w-full h-full"
+                            effect="fade"
+                            autoplay
+                            autoplaySpeed={4000}
+                            afterChange={handleLargeCarouselChange}
+                            initialSlide={currentImageIndex}
+                            ref={(carousel) => {
+                                if (carousel) {
+                                    carousel.goTo(currentImageIndex, false);
+                                }
+                            }}
+                        >
+                            {productImages.map((s, index) => (
+                                <div className="lg:rounded-lg w-full lg:min-h-[650px] flex justify-center items-center" key={index}>
                                     <Image
-                                        key={index}
                                         src={s.image}
-                                        alt={s}
-                                        width={'auto'}
-                                        className="object-cover"
+                                        alt={`Product image ${index + 1}`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        className="object-cover rounded-lg hover:rounded-lg rounded-lg"
                                     />
                                 </div>
                             ))}
                         </Carousel>
+
+                        <div className="w-full mt-4 relative">
+                            <Carousel {...smallCarouselSettings} dots={false}>
+                                {productImages.map((s, index) => (
+                                    <div
+                                        className="flex justify-center cursor-pointer"
+                                        key={index}
+                                        onClick={() => handleLargeCarouselChange(index)}
+                                    >
+                                        <div className={`relative ${index === currentImageIndex ? 'border-2 border-blue-500 rounded-lg' : ''} w-full`}>
+                                            <img
+                                                src={s.image}
+                                                alt={`Thumbnail image ${index + 1}`}
+                                                className="object-cover rounded-lg h-full w-full"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </Carousel>
+                        </div>
                     </div>
                     <div className="lg:w-[45%] m-5 lg:m-0">
                         <div className="">
@@ -209,7 +271,7 @@ export default function ProductData({slug}) {
                 <div className="grid grid-cols-2 px-4 md:grid-cols-3 gap-10">
                     {product?.productAttributes?.filter(attr => attr.attributeValue && attr.attributeValue.trim() !== "").map((attr) => (
                         <div className="flex gap-4" key={attr?.id}>
-                            <div dangerouslySetInnerHTML={{ __html: attr.svgIcon }} className="w-11 h-11 my-auto"></div>
+                            <div dangerouslySetInnerHTML={{__html: attr.svgIcon}} className="w-11 h-11 my-auto"></div>
                             <div className="flex flex-col my-auto">
                                 <div className='uppercase font-bold'>{attr.name}</div>
                                 <div>{attr.attributeValue}</div>
@@ -220,7 +282,7 @@ export default function ProductData({slug}) {
                 <div className="heading text-center mt-10">
                     <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Chi tiết</h2>
                 </div>
-                <div className="px-4" dangerouslySetInnerHTML={{ __html: product?.description }}></div>
+                <div className="px-4" dangerouslySetInnerHTML={{__html: product?.description}}></div>
             </div>
             {/*End*/}
 
