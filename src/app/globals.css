@@ -75,6 +75,9 @@ p {margin:0}
         content: "";
         width: 0 !important;
         height: 0 !important;
+        border-inline-width: 0;
+        border-block-width: 0;
+        border-radius: 0;
     }
 
     .slick-next::before {
@@ -93,6 +96,9 @@ p {margin:0}
         content: "" ;
         width: 0 !important;
         height: 0 !important;
+        border-inline-width: 0;
+        border-block-width: 0;
+        border-radius: 0;
     }
 
     .slick-arrow:hover {
@@ -100,54 +106,54 @@ p {margin:0}
     }
 }
 
-.heading {
-    position: relative;
-}
-
-.heading:before {
-    position: absolute;
-    display: block;
-    content: ' ';
-    width: 100%;
-    height: 1px;
-    top: 50%;
-    z-index: 0;
-    background: #bbac78 !important
-}
-
-.no-scroll {
-    overflow: hidden;
-    height: 100%;
-}
-
-@media (max-width: 1024px) {
-    .nextArrow,
-    .prevArrow {
-        display: none !important;
+    .heading {
+        position: relative;
     }
-}
 
-@keyframes ringing {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
+    .heading:before {
+        position: absolute;
+        display: block;
+        content: ' ';
+        width: 100%;
+        height: 1px;
+        top: 50%;
+        z-index: 0;
+        background: #bbac78 !important
+    }
 
-.ringing {
-    animation: ringing 1s infinite;
-}
+    .no-scroll {
+        overflow: hidden;
+        height: 100%;
+    }
 
-.slick-dots li button:before {
-    font-size: 0px !important;
-}
+    @media (max-width: 1024px) {
+        .nextArrow,
+        .prevArrow {
+            display: none !important;
+        }
+    }
 
-figure.image.image_resized{
-    margin-left: auto;
-    margin-right: auto;
-}
+    @keyframes ringing {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
 
-.carousel_image {
-    max-width: 100%; /* Ensure the image scales down */
+    .ringing {
+        animation: ringing 1s infinite;
+    }
+
+    .slick-dots li button:before {
+        font-size: 0px !important;
+    }
+
+    figure.image.image_resized{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .carousel_image {
+        max-width: 100%; /* Ensure the image scales down */
     height: auto;
 }
 
