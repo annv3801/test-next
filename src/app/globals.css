@@ -281,3 +281,12 @@ figure.image.image_resized{
 .custom-carousel .slick-slide:last-child {
     margin-right: 0; /* Remove margin from the last item */
 }
+
+.carousel-item {
+    padding: 0 8px; /* Adjust the gap as needed */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}

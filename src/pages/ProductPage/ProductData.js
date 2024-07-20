@@ -1,8 +1,19 @@
 'use client'
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import ProductConfigData from "@/pages/ProductPage/ProductConfigData";
 import {Spin, Carousel, Image} from "antd";
+
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+let largeCarousel = null;
+let smallCarousel = null;
 
 export default function ProductData({slug}) {
     const [isLoading, setIsLoading] = useState(true);
@@ -10,6 +21,8 @@ export default function ProductData({slug}) {
     const [viewedProducts, setViewedProducts] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    const largeCarouselRef = useRef(null);
+    const smallCarouselRef = useRef(null);
 
     useEffect(() => {
         axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
@@ -103,28 +116,50 @@ export default function ProductData({slug}) {
         );
     }
 
-
     // Check if there are any product images
     const productImages = product?.productImages || [];
 
-    const handleSmallCarouselChange = (index) => {
+    const handleImageChange = debounce((index) => {
         setCurrentImageIndex(index);
-    };
+    }, 300);
 
-    const handleLargeCarouselChange = (index) => {
+    const handleSmallImageClick = (index) => {
         setCurrentImageIndex(index);
+        largeCarouselRef.current.goTo(index);
     };
 
     if (productImages.length === 0) {
-        return null; // or return some placeholder content
+        return null;
     }
 
     const smallCarouselSettings = {
         infinite: true,
-        slidesToShow: Math.min(5, productImages.length),
+        slidesToShow: 5,
         slidesToScroll: 1,
-        afterChange: handleSmallCarouselChange,
-        arrows: productImages.length > 5
+        arrows: productImages.length > 5,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: Math.min(5, productImages.length),
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: Math.min(3, productImages.length),
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: Math.min(2, productImages.length),
+                    slidesToScroll: 1,
+                }
+            }
+        ]
     };
 
     return (
@@ -134,22 +169,18 @@ export default function ProductData({slug}) {
                 <div className="lg:flex lg:justify-between block gap-10">
                     <div className="lg:w-[35%]">
                         <Carousel
+                            ref={largeCarouselRef}
                             arrows
                             infinite
                             className="w-full h-full"
                             effect="fade"
                             autoplay
                             autoplaySpeed={4000}
-                            afterChange={handleLargeCarouselChange}
+                            afterChange={handleImageChange}
                             initialSlide={currentImageIndex}
-                            ref={(carousel) => {
-                                if (carousel) {
-                                    carousel.goTo(currentImageIndex, false);
-                                }
-                            }}
                         >
                             {productImages.map((s, index) => (
-                                <div className="lg:rounded-lg w-full lg:min-h-[650px] flex justify-center items-center" key={index}>
+                                <div className="w-full lg:max-h-[650px] flex justify-center items-center" key={index}>
                                     <Image
                                         src={s.image}
                                         alt={`Product image ${index + 1}`}
@@ -161,13 +192,13 @@ export default function ProductData({slug}) {
                             ))}
                         </Carousel>
 
-                        <div className="w-full mt-4 relative">
-                            <Carousel {...smallCarouselSettings} dots={false}>
+                        <div className="w-full mt-4 relative hidden lg:block">
+                            <Carousel ref={smallCarouselRef} {...smallCarouselSettings} dots={false}>
                                 {productImages.map((s, index) => (
                                     <div
-                                        className="flex justify-center cursor-pointer"
+                                        className="flex justify-center cursor-pointer carousel-item"
                                         key={index}
-                                        onClick={() => handleLargeCarouselChange(index)}
+                                        onClick={() => handleSmallImageClick(index)}
                                     >
                                         <div className={`relative ${index === currentImageIndex ? 'border-2 border-blue-500 rounded-lg' : ''} w-full`}>
                                             <img
@@ -178,6 +209,12 @@ export default function ProductData({slug}) {
                                         </div>
                                     </div>
                                 ))}
+                                {productImages.length < 5 &&
+                                    Array.from({length: 5 - productImages.length}).map((_, idx) => (
+                                        <div className="flex justify-center cursor-pointer carousel-item" key={`empty-${idx}`}>
+                                        </div>
+                                    ))
+                                }
                             </Carousel>
                         </div>
                     </div>
