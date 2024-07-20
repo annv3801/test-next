@@ -2,6 +2,7 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 import axios from "axios";
 import Link from "next/link";
+
 function CustomLink({ to, onClick, customUrl, children, isActive, ...rest }) {
     const path = customUrl ? customUrl : (to === '/trang-chu'? '/' : `/category${to}`);
     return (
@@ -10,6 +11,7 @@ function CustomLink({ to, onClick, customUrl, children, isActive, ...rest }) {
         </Link>
     );
 }
+
 export default function Header({configData}) {
     const node = useRef();
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -25,23 +27,22 @@ export default function Header({configData}) {
 
     useEffect(() => {
         const updateStyle = () => {
-            if (window.innerWidth > 768) { // Adjust this value based on your breakpoint needs
+            if (window.innerWidth > 768) {
                 setStyle({ minWidth: 'max-content', width: 'auto' });
             } else {
                 setStyle({ minWidth: '100%', width: '100%' });
             }
         };
 
-        updateStyle(); // Call when component mounts
-        window.addEventListener('resize', updateStyle); // Adjust on window resize
+        updateStyle();
+        window.addEventListener('resize', updateStyle);
 
-        // Clean up listener
         return () => window.removeEventListener('resize', updateStyle);
     }, []);
 
     const isMobile = () => window.innerWidth <= 768;
     const handleMouseEnter = () => {
-        if (!isDropdownOpen && window.innerWidth > 768) { // Only apply hover effect on non-mobile devices
+        if (!isDropdownOpen && window.innerWidth > 768) {
             setDropdownOpen(true);
         }
         if (!isMobile()) {
@@ -50,7 +51,7 @@ export default function Header({configData}) {
     };
 
     const handleMouseLeave = () => {
-        if (isDropdownOpen && window.innerWidth > 768) { // Only apply hover effect on non-mobile devices
+        if (isDropdownOpen && window.innerWidth > 768) {
             setDropdownOpen(false);
         }
         if (!isMobile()) {
@@ -63,10 +64,9 @@ export default function Header({configData}) {
             setDropdownOpen(window.innerWidth > 768);
         };
 
-        handleResize(); // Check the initial width at render
+        handleResize();
         window.addEventListener('resize', handleResize);
 
-        // Cleanup function for the listener
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
@@ -126,47 +126,40 @@ export default function Header({configData}) {
 
     const handleMobileClick = (event) => {
         if (isMobile()) {
-            event.preventDefault(); // Prevent default link behavior on mobile.
+            event.preventDefault();
             toggleDropdown(event);
         } else {
-            // For non-mobile devices, simply toggle the dropdown.
             toggleDropdown(event);
         }
     };
-
 
     const toggleMenu = useCallback(() => {
         const newMenuState = !isMenuOpen;
         setMenuOpen(newMenuState);
         setOverlayVisible(!isOverlayVisible);
 
-        if (newMenuState) { // When the menu is newly opened.
-            document.body.classList.add('no-scroll'); // Prevent scrolling when menu open.
-        }
-        else {
-            document.body.classList.remove('no-scroll'); // Enable scrolling when menu closed.
+        if (newMenuState) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
         }
     }, [isMenuOpen, isOverlayVisible]);
 
     const closeMenu = useCallback(() => {
         setMenuOpen(false);
         setOverlayVisible(false);
-        document.body.classList.remove('no-scroll'); // Enable scrolling when menu closed.
+        document.body.classList.remove('no-scroll');
     }, []);
 
     const handleClickOutside = useCallback((e) => {
         if (node.current.contains(e.target)) {
-            // inside click
             return;
         }
-        // outside click
         closeMenu();
     }, [node, closeMenu]);
 
     useEffect(() => {
-        // Attach the listeners on component mount.
         document.addEventListener("mousedown", handleClickOutside);
-        // Detach the listeners on component unmount.
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -189,6 +182,29 @@ export default function Header({configData}) {
 
         fetchMenuItems();
     }, []);
+
+    useEffect(() => {
+        const handleTouchStart = () => {
+            if (isMobile()) {
+                setDropdownOpen(true);
+            }
+        };
+
+        const handleTouchEnd = () => {
+            if (isMobile()) {
+                setDropdownOpen(true);
+            }
+        };
+
+        window.addEventListener('touchstart', handleTouchStart);
+        window.addEventListener('touchend', handleTouchEnd);
+
+        return () => {
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, []);
+
     return (
         <header ref={node} className='shadow-md bg-white font-[sans-serif] sticky top-0 z-50'>
             {
@@ -246,7 +262,7 @@ export default function Header({configData}) {
                             <div className="p-2 bg-white rounded-full mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" className="fill-current my-auto" style={{color: '#0090d0'}} viewBox="0 0 512 512">
                                     <path
-                                        d="M272 0C404.5 0 512 107.5 512 240c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-114.9-93.1-208-208-208c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 192a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32-80c0-8.8 7.2-16 16-16c79.5 0 144 64.5 144 144c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9-50.1-112-112-112c-8.8 0-16-7.2-16-16zm73 174.7c11.3-13.8 30.3-18.5 46.7-11.4l112 48c17.6 7.5 27.4 26.5 23.4 45.1l-24 112c-4 18.4-20.3 31.6-39.1 31.6l0 0c-6.1 0-12.2-.1-18.3-.4l-.1 0h0c-4.6-.2-9.1-.4-13.7-.8C183.5 494.5 0 300.7 0 64v0C0 45.1 13.2 28.8 31.6 24.9l112-24c18.7-4 37.6 5.8 45.1 23.4l48 112c7 16.4 2.4 35.4-11.4 46.7l-40.6 33.2c26.7 46 65.1 84.4 111.1 111.1L329 286.7zM448 480c3.8 0 7-2.6 7.8-6.3l24-112c.8-3.7-1.2-7.5-4.7-9l-112-48c-3.3-1.4-7.1-.5-9.3 2.3l-33.2 40.6c-9.9 12.1-27.2 15.3-40.8 7.4c-50.9-29.5-93.3-71.9-122.7-122.7c-7.9-13.6-4.7-30.9 7.4-40.8l40.6-33.2c2.8-2.3 3.7-6.1 2.3-9.3l-48-112c-1.5-3.5-5.3-5.5-9-4.7l-112 24C34.6 57 32 60.2 32 64v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0c0 229.6 186.1 415.8 415.7 416l.3 0z"/>
+                                        d="M272 0C404.5 0 512 107.5 512 240c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-114.9-93.1-208-208-208c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 192a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32-80c0-8.8 7.2-16 16-16c79.5 0 144 64.5 144 144c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9-50.1-112-112-112c-8.8 0-16-7.2-16-16zm73 174.7c11.3-13.8 30.3-18.5 46.7-11.4l112 48c17.6 7.5 27.4 26.5 23.4 45.1l-24 112c-4 18.4-20.3 31.6-39.1 31.6l0 0c-6.1 0-12.2-.1-18.3-.4l-.1 0h0c-4.6-.2-9.1-.4-13.7-.8C183.5 494.5 0 300.7 0 64v0C0 45.1 13.2 28.8 31.6 24.9l112-24c18.7-4 37.6 5.8 45.1 23.4l48 112c7 16.4 2.4 35.4-11.4 46.7l-40.6 33.2c26.7 46 65.1 84.4 111.1 111.1L329 286.7zM448 480c3.8 0 7-2.6 7.8-6.3l24-112c.8-3.7-1.2-7.5-4.7-9l-112-48c-3.3-1.4-7.1-.5-9.3 2.3l-33.2 40.6c-9.9 12.1-27.2 15.3-40.8 7.4c-50.9-29.5-93.3-71.9-122.7-122.7c-7.9-13.6-4.7-30.9 7.4-40.8l40.6-33.2c2.8-2.3 3.7-6.1 2.3-9.3l-48-112c-1.5-3.5-5.3-5.5-9-4.7l-112 24C34.6 57 32 60.2 32 64v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0c0 229.6 186.1 415.8 415.7 416l.3 0z"/>
                                 </svg>
                             </div>
 
@@ -316,7 +332,7 @@ export default function Header({configData}) {
                                                                 )}
                                                             </div>
                                                         </ul>
-                                                        )}
+                                                    )}
                                                 </div>
                                             ) : (
                                                 <CustomLink
