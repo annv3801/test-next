@@ -52,11 +52,11 @@ p {margin:0}
         position: relative;
     }
 
-    :where(.css-dev-only-do-not-override-kghr11).ant-carousel .slick-prev {
+    .slick-prev {
         inset-inline-start: 0px;
     }
 
-    :where(.css-dev-only-do-not-override-kghr11).ant-carousel .slick-next {
+    .slick-next {
         inset-inline-end: 0px;
     }
     .slick-prev::before {
