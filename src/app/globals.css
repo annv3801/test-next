@@ -71,6 +71,9 @@ p {margin:0}
         top: 50%;
         color: white;
     }
+    .slick-prev::after {
+        content: "";
+    }
 
     .slick-next::before {
         content: "→";
@@ -83,6 +86,9 @@ p {margin:0}
         position: absolute;
         top: 50%;
         color: white;
+    }
+    .slick-next::after {
+        content: "" ;
     }
 
     .slick-arrow:hover {
