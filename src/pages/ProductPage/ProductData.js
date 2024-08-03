@@ -134,14 +134,14 @@ export default function ProductData({slug}) {
 
     const smallCarouselSettings = {
         infinite: true,
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
-        arrows: productImages.length > 5,
+        arrows: productImages.length > 4,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: Math.min(5, productImages.length),
+                    slidesToShow: Math.min(4, productImages.length),
                     slidesToScroll: 1,
                 }
             },
@@ -166,8 +166,8 @@ export default function ProductData({slug}) {
         <div>
             <div className="container mx-auto lg:my-7">
                 {/*Top*/}
-                <div className="lg:flex lg:justify-between block gap-10">
-                    <div className="lg:w-[35%]">
+                <div className="lg:flex lg:justify-between block gap-8">
+                    <div className="lg:w-[30%]">
                         <Carousel
                             ref={largeCarouselRef}
                             arrows
@@ -180,13 +180,13 @@ export default function ProductData({slug}) {
                             initialSlide={currentImageIndex}
                         >
                             {productImages.map((s, index) => (
-                                <div className="w-full lg:max-h-[650px] flex justify-center items-center" key={index}>
+                                <div className="w-full flex justify-center items-center" key={index}>
                                     <Image
                                         src={s.image}
                                         alt={`Product image ${index + 1}`}
                                         layout="fill"
                                         objectFit="cover"
-                                        className="object-cover rounded-lg hover:rounded-lg rounded-lg"
+                                        className="object-cover lg:rounded-lg"
                                     />
                                 </div>
                             ))}
@@ -209,8 +209,8 @@ export default function ProductData({slug}) {
                                         </div>
                                     </div>
                                 ))}
-                                {productImages.length < 5 &&
-                                    Array.from({length: 5 - productImages.length}).map((_, idx) => (
+                                {productImages.length < 4 &&
+                                    Array.from({length: 4 - productImages.length}).map((_, idx) => (
                                         <div className="flex justify-center cursor-pointer carousel-item" key={`empty-${idx}`}>
                                         </div>
                                     ))
@@ -279,7 +279,7 @@ export default function ProductData({slug}) {
                             ))}
                         </div>
                     </div>
-                    <div className="lg:w-[20%] border-2 rounded-xl h-full p-3 m-5 lg:m-0 md:block hidden">
+                    <div className="lg:w-[25%] border-2 rounded-xl h-full p-3 m-5 lg:m-0 md:block hidden">
                         <div className="text-center font-bold text-xl">
                             Cam kết từ chúng tôi
                         </div>
@@ -324,7 +324,7 @@ export default function ProductData({slug}) {
             {/*End*/}
 
             {/*End*/}
-            <div className="container mx-auto py-8">
+            <div className="container mx-auto py-4">
                 {product?.enjoy == null ? "" : (
                     <div>
                         <div className="heading text-center">
@@ -394,7 +394,7 @@ export default function ProductData({slug}) {
                         <div className="heading text-center">
                             <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">Sản phẩm liên quan</h2>
                         </div>
-                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
+                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5 px-2 md:px-0 pb-5">
                             {product?.relatedProduct?.map((product) => (
                                 <a href={`/product/${product?.slug}`} key={product.id} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                     <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
@@ -418,7 +418,7 @@ export default function ProductData({slug}) {
                         <div className="heading text-center">
                             <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Sản phẩm đã xem</h2>
                         </div>
-                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 px-2 md:px-0 pb-5">
+                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5 px-2 md:px-0 pb-5">
                             {matchingProducts?.map((product) => (
                                 <a href={`/product/${product?.slug}`} key={product?.slug} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                     <img className="rounded-xl" src={product?.image} alt={product?.name} title={product?.name}/>
