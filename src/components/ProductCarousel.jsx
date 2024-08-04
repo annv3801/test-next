@@ -47,7 +47,9 @@ export default function ProductCarousel({products}) {
                                     <div>{_?.alcoholPercentage}%</div>
                                 </div>
                             </div>
-                            <div className="text-base text-center font-bold pb-0.5" style={{marginBottom: '5px'}}>{_?.price != 0 ? Intl.NumberFormat('de-DE').format(_?.price) + 'đ' : "Liên hệ"}</div>
+                            <div className="text-base text-center font-bold pb-0.5" style={{marginBottom: '5px'}}>
+                                {_?.promotionPrice == 0 || _?.promotionPrice == null ? (_?.price != 0 ? Intl.NumberFormat('de-DE').format(_?.price) + 'đ' : "Liên hệ") :(_?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(_?.promotionPrice) + 'đ' : "Liên hệ")}
+                            </div>
                         </a>
                     </div>
                 ))}

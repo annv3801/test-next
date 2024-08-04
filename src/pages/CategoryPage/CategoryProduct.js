@@ -91,7 +91,9 @@ export default function CategoryProduct({slug}) {
                                 <div>/</div>
                                 <div>{product?.alcoholPercentage}%</div>
                             </div>
-                            <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">{product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}</div>
+                            <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
+                                {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") :(product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
+                            </div>
                         </a>
                     ))}
                 </div>

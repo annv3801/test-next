@@ -42,7 +42,8 @@ export default function ProductData({slug}) {
                     image: productData.productImages[0]?.image, // assuming productImages is an array and you want the first image
                     price: productData.price,
                     alcoholPercentage: productData.alcoholPercentage,
-                    bottle: productData.bottle
+                    bottle: productData.bottle,
+                    promotionPrice : productData.promotionPrice
                 });
                 setIsLoading(false);
             })
@@ -229,9 +230,17 @@ export default function ProductData({slug}) {
                                 <h3>{product?.alcoholPercentage}%</h3>
                             </div>
                         </div>
-                        <div className="flex gap-2 my-3 text-red-500 font-bold text-3xl">
-                            {product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}
-                        </div>
+                        {product?.promotionPrice == 0 || product?.promotionPrice == null ?
+                            (<div className="flex gap-2 my-3 text-red-500 font-bold text-3xl">
+                                {product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}
+                            </div>) :
+                            (<div className="flex gap-5 my-3 text-red-500 font-bold text-3xl">
+                                {product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ"}
+                                <div className="text-blue-500 text-xl my-auto line-through">
+                                    {product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}
+                                </div>
+                            </div>)
+                        }
                         <a href="#tasting" className="font-bold hover:text-blue-500">
                             Tasting notes (1)
                         </a>
@@ -405,7 +414,9 @@ export default function ProductData({slug}) {
                                         <div>/</div>
                                         <div>{product?.alcoholPercentage}%</div>
                                     </div>
-                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">{product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ"}</div>
+                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
+                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") :(product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
+                                    </div>
                                 </a>
                             ))}
                         </div>
@@ -429,7 +440,9 @@ export default function ProductData({slug}) {
                                         <div>/</div>
                                         <div>{product?.alcoholPercentage}%</div>
                                     </div>
-                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">{product?.price == 0 ? "Liên hệ" : Intl.NumberFormat('de-DE').format(product?.price) + 'đ'}</div>
+                                    <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
+                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") :(product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
+                                    </div>
                                 </a>
                             ))}
                         </div>
