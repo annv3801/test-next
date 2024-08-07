@@ -19,6 +19,8 @@ async function getData(params) {
 
 export async function generateMetadata(params) {
     const data = await getData(params);
+    const imageUrl = data?.productImages[0]?.image || "";
+
     return {
         title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
         description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
@@ -26,8 +28,26 @@ export async function generateMetadata(params) {
         url: "https://ruoudutysanbay.com/",
         type: "website",
         openGraph: {
-            images: `${data?.productImages[0].image != null ? data?.productImages[0].image : ""} `,
+            title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            url: "https://ruoudutysanbay.com/",
+            site_name: "Rượu Duty Sân Bay",
+            type: "website",
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: data?.name || "Product Image",
+                }
+            ],
         },
+        twitter: {
+            card: "summary_large_image",
+            title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            images: [imageUrl],
+        }
     }
 }
 
