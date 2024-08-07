@@ -23,7 +23,7 @@ export async function generateMetadata(params) {
 
     return {
         title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-        description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+        description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
         siteName: "Rượu Duty Sân Bay",
         url: "https://ruoudutysanbay.com/",
         type: "website",
@@ -46,7 +46,14 @@ export async function generateMetadata(params) {
             card: "summary_large_image",
             title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
             description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-            images: [imageUrl],
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 600,
+                    alt: data?.name || "Product Image",
+                }
+            ],
         }
     }
 }
