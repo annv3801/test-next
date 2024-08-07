@@ -18,19 +18,20 @@ async function getData(params) {
 }
 
 export async function generateMetadata(params) {
-    const data = await getData(params);
+    const data = await getData(params); // Ensure this function fetches the correct data based on params
     const imageUrl = data?.productImages[0]?.imageJpeg || "";
+    const pageUrl = `https://ruoudutysanbay.com/product/${params.slug}`; // Assuming 'slug' is part of params
 
     return {
         title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-        description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+        description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
         siteName: "Rượu Duty Sân Bay",
-        url: "https://ruoudutysanbay.com/",
+        url: pageUrl,
         type: "website",
         openGraph: {
             title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-            description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-            url: "https://ruoudutysanbay.com/",
+            description: `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            url: pageUrl,
             site_name: "Rượu Duty Sân Bay",
             type: "website",
             images: [
@@ -57,6 +58,7 @@ export async function generateMetadata(params) {
         }
     }
 }
+
 
 export default async function Category(params) {
     const data = await getData(params);
