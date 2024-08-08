@@ -1,11 +1,19 @@
 import axios from "axios";
 import ProductData from "@/pages/ProductPage/ProductData";
 
-function stripHtmlTags(html) {
+function stripHtmlTagsAndLimitWords(html, maxWords = 950) {
     if (!html) return "";
-    // Remove all HTML tags including image tags
-    return html.replace(/<img[^>]*>/g, "").replace(/<[^>]*>/g, "").trim();
+
+    // Remove all HTML tags, including image tags
+    const textContent = html.replace(/<img[^>]*>/g, "").replace(/<[^>]*>/g, "").trim();
+
+    // Split the text into words
+    const words = textContent.split(/\s+/);
+
+    // Limit to the specified number of words
+    return words.slice(0, maxWords).join(" ");
 }
+
 
 function capitalizeFirstLetter(string) {
     if (!string) return "";
@@ -78,7 +86,7 @@ export async function generateMetadata(params) {
     const capitalizedProductName = capitalizeFirstLetter(data?.name);
     const keywords = generateSEOKeywords(capitalizedProductName);
     const rawDescription = data?.description || data?.name;
-    const plainTextDescription = stripHtmlTags(rawDescription);
+    const plainTextDescription = stripHtmlTagsAndLimitWords(rawDescription);
 
     return {
         title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,

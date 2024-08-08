@@ -165,6 +165,7 @@ export default function ProductData({slug}) {
 
     return (
         <div>
+            <h1 className="text-[0px]">{product?.name}</h1>
             <div className="container mx-auto lg:my-7">
                 {/*Top*/}
                 <div className="lg:flex lg:justify-between block gap-8">
@@ -220,15 +221,17 @@ export default function ProductData({slug}) {
                         </div>
                     </div>
                     <div className="lg:w-[45%] m-5 lg:m-0">
-                        <div className="">
-                            <h1 className="text-2xl font-extrabold uppercase">{product?.name}</h1>
-                            {product?.dutyFrom != null ? <div className='text-base font-bold py-2'>{`(Duty sân bay ${product?.dutyFrom})`}</div> : ""}
-                            <div className="h-1 border-t-2 w-[75%] border-gray-300 py-1"></div>
-                            <div className="flex gap-1 font-bold text-gray-500">
-                                <h3>{product?.bottle}ml</h3>
-                                /
-                                <h3>{product?.alcoholPercentage}%</h3>
-                            </div>
+                        <h1 className="text-2xl font-extrabold uppercase">{product?.name}</h1>
+                        {product?.dutyFrom != null ?
+                            <div className='text-base font-bold py-2'>
+                                {`(Duty sân bay ${product?.dutyFrom})`}
+                            </div> : ""
+                        }
+                        <div className="h-1 border-t-2 w-[75%] border-gray-300 py-1"></div>
+                        <div className="flex gap-1 font-bold text-gray-500">
+                            <h3>{product?.bottle}ml</h3>
+                            /
+                            <h3>{product?.alcoholPercentage}%</h3>
                         </div>
                         {product?.promotionPrice == 0 || product?.promotionPrice == null ?
                             (<div className="flex gap-2 my-3 text-red-500 font-bold text-3xl">
@@ -415,7 +418,7 @@ export default function ProductData({slug}) {
                                         <div>{product?.alcoholPercentage}%</div>
                                     </div>
                                     <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
-                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") :(product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
+                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") : (product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
                                     </div>
                                 </a>
                             ))}
@@ -441,7 +444,7 @@ export default function ProductData({slug}) {
                                         <div>{product?.alcoholPercentage}%</div>
                                     </div>
                                     <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
-                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") :(product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
+                                        {product?.promotionPrice == 0 || product?.promotionPrice == null ? (product?.price != 0 ? Intl.NumberFormat('de-DE').format(product?.price) + 'đ' : "Liên hệ") : (product?.promotionPrice != 0 ? Intl.NumberFormat('de-DE').format(product?.promotionPrice) + 'đ' : "Liên hệ")}
                                     </div>
                                 </a>
                             ))}
