@@ -1,6 +1,61 @@
 import axios from "axios";
 import ProductData from "@/pages/ProductPage/ProductData";
 
+function stripHtmlTags(html) {
+    if (!html) return "";
+    // Remove all HTML tags including image tags
+    return html.replace(/<img[^>]*>/g, "").replace(/<[^>]*>/g, "").trim();
+}
+
+function capitalizeFirstLetter(string) {
+    if (!string) return "";
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+function generateSEOKeywords(productName) {
+    // Split the product name into words
+    const words = productName ? productName.split(" ") : [];
+
+    // Basic keywords: each word and combination of words
+    let keywords = [];
+
+    // Add individual words
+    keywords.push(...words);
+
+    // Add combinations
+    for (let i = 0; i < words.length; i++) {
+        for (let j = i + 1; j <= words.length; j++) {
+            const phrase = words.slice(i, j).join(" ");
+            if (phrase.length > 1) {
+                keywords.push(phrase);
+            }
+        }
+    }
+    const pageNameVariations = [
+        "Rượu Duty Sân Bay",
+        "Ruou Duty San Bay",
+        "Rượu Duty",
+        "Ruou Duty",
+        "Rượu",
+        "Ruou",
+        "Rượu xách tay",
+        "Ruou xach tay",
+        "Rượu ngoại",
+        "Ruou ngoai",
+        "Rượu ngoại chính hãng",
+        "Ruou ngoai chinh hang",
+    ];
+
+    keywords.push(...pageNameVariations);
+    // Remove duplicates
+    keywords = [...new Set(keywords)];
+
+    // Convert to lowercase for consistency, ensuring each keyword is defined
+    keywords = keywords.filter(Boolean).map(keyword => keyword.toLowerCase());
+
+    return keywords;
+}
+
 async function getData(params) {
     try {
         const slug = params.params.slug;
@@ -20,16 +75,21 @@ async function getData(params) {
 export async function generateMetadata(params) {
     const data = await getData(params);
     const imageUrl = data?.productImages[0]?.imageJpeg || "";
+    const capitalizedProductName = capitalizeFirstLetter(data?.name);
+    const keywords = generateSEOKeywords(capitalizedProductName);
+    const rawDescription = data?.description || data?.name;
+    const plainTextDescription = stripHtmlTags(rawDescription);
 
     return {
-        title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-        description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+        title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,
+        description: plainTextDescription,
         siteName: "Rượu Duty Sân Bay",
+        keywords: keywords.join(", "),
         url: `https://ruoudutysanbay.com/product/${params.params.slug}`,
         type: "website",
         openGraph: {
-            title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-            description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,
+            description: plainTextDescription,
             url: `https://ruoudutysanbay.com/product/${params.params.slug}`,
             site_name: "Rượu Duty Sân Bay",
             type: "website",
@@ -44,8 +104,8 @@ export async function generateMetadata(params) {
         },
         twitter: {
             card: "summary_large_image",
-            title: `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
-            description: `Chuyên mua bán rượu ngoại - ${data?.name != null ? data?.name.toUpperCase() : ""}`,
+            title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,
+            description: plainTextDescription,
             images: [
                 {
                     url: imageUrl,
@@ -59,7 +119,6 @@ export async function generateMetadata(params) {
 }
 
 export default async function Category(params) {
-    const data = await getData(params);
     return (
         <div>
             <ProductData slug={params.params.slug}></ProductData>
