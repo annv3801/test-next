@@ -6,7 +6,7 @@ import Script from "next/script";
 
 async function getData() {
     try {
-        const response = await axios.get('https://api.ruoudutysanbay.com/Config/View-Config', {
+        const response = await axios.get(`https://api.ruoudutysanbay.com/Config/View-Config?timestamp=${new Date().getTime()}`, {
             headers: {
                 'Accept': 'text/plain',
             },
