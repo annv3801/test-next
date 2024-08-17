@@ -45,12 +45,18 @@ export default function HomeCarousel() {
     }, []);
 
     return (
-        <Carousel autoplay>
-            {data.map((s) => {
-                return (
-                    <img src={`https://api.ruoudutysanbay.com/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
-                );
-            })}
-        </Carousel>
+        <div className="slider-container rounded-3xl mx-auto h-full">
+            <Carousel autoplay>
+                {data.map((s) => {
+                    return (
+                        <img src={`https://api.ruoudutysanbay.com/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover rounded-3xl mx-auto" alt={s.name} key={s.id} title={s.name}/>
+                    );
+                })}
+            </Carousel>
+            <div className="introduction rounded-3xl bg-white absolute z-10 flex flex-col gap-6 border-2">
+                <h1 className="text-[36px] font-bold text-center">Rượu Duty Sân Bay - Mua bán thu mua rượu</h1>
+                <div className="text-center opacity-60 text-[18px]">Rượu duty sân bay – là đơn vị chuyên cung cấp rượu ngoại chính hãng, giá tốt tại Hà Nội. Được thành lập từ năm 2010, với hơn 10 năm kinh nghiệm chúng tôi luôn tự hào mang đến cho khách hàng từ trải nghiệm mua sắm đến chất lượng sản phẩm bậc nhất!</div>
+            </div>
+        </div>
     );
 }

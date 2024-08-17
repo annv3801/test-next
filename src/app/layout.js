@@ -26,11 +26,11 @@ export default async function RootLayout({ children }) {
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
     </head>
     <body>
-        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-DFR575JZTN`} />
-        <Script strategy="lazyOnload">
+    <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-DFR575JZTN`}/>
+    <Script strategy="lazyOnload">
             {`
                 window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}

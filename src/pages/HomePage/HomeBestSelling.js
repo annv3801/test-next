@@ -36,10 +36,11 @@ export default function HomeBestSelling() {
     }, []);
 
     return (
-        <div className="relative">
-            <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative w-full">
-                <div className="heading text-center">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10 z-10">Sản phẩm bán chạy</h2>
+        <div className="relative lg:pt-[220px]">
+            <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative w-full flex flex-col gap-10">
+                <div className="flex flex-grow gap-2">
+                    <h2 className="font-bold text-[36px] relative bg-white flex flex-col flex-1 gap-6">Sản phẩm bán chạy</h2>
+                    <div className="text-xl flex-shrink-0 text-[#475467] w-[300px]">Các sản phẩm được người dùng mua nhiều nhất</div>
                 </div>
                 <div className="w-full">
                     <ProductCarousel products={products}></ProductCarousel>

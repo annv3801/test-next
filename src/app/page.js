@@ -7,14 +7,14 @@ import HomeBrand from "@/pages/HomePage/HomeBrand";
 export async function generateMetadata() {
     return {
         title: "Rượu Duty Sân Bay Chính Hãng",
-        description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập như: Rượu vang, Rượu Whisky, Vodka, Cognac, Tequila, Gin, Rum, Sake, Bia, Soju, Absinthe,...",
+        description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập",
         siteName: "Rượu Duty Sân Bay Chính Hãng",
         url: "https://ruoudutysanbay.com/",
         keywords: ["Rượu", "Ruou", "Ruou Duty", "Ruợu Duty", "Rượu Duty Sân Bay", "Ruou Duty San Bay", "Ruou duty san bay chinh hang", "Rượu Duty Sân Bay Chính hãng", "Chivas", "Maccallan", "Ruợu ngoại", "Ruou ngoai", "Ruợu ngoại chính hãng", "Ruou ngoai chinh hang"],
         type: "website",
         openGraph: {
             title: `Rượu Duty Sân Bay`,
-            description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập như: Rượu vang, Rượu Whisky, Vodka, Cognac, Tequila, Gin, Rum, Sake, Bia, Soju, Absinthe,...",
+            description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập",
             url: `https://ruoudutysanbay.com/`,
             site_name: "Rượu Duty Sân Bay",
             type: "website",
@@ -30,7 +30,7 @@ export async function generateMetadata() {
         twitter: {
             card: "summary_large_image",
             title: `Rượu Duty Sân Bay`,
-            description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập như: Rượu vang, Rượu Whisky, Vodka, Cognac, Tequila, Gin, Rum, Sake, Bia, Soju, Absinthe,...",
+            description: "Rượu Duty Sân Bay - Chuyên mua bán rượu tại khu vực Hà Nội, phân phối rượu whisky chính hãng từ các thương hiệu nổi tiếng trên thế giới. Chuyên phân phối và bán lẻ các dòng rượu ngoại nhập",
             images: [
                 {
                     url: "https://api.ruoudutysanbay.com/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg",
@@ -47,7 +47,7 @@ export default async function Home() {
   return (
     <div>
         <Carousel></Carousel>
-        <HomeIntroduce></HomeIntroduce>
+        {/*<HomeIntroduce></HomeIntroduce>*/}
         <HomeBestSelling></HomeBestSelling>
         <HomeNews></HomeNews>
         <HomeBrand></HomeBrand>
