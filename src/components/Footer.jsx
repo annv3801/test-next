@@ -5,7 +5,7 @@ const Footer = ({configData}) => {
         <div className="bg-[#101828]">
             <div className="container mx-auto py-6 md:py-10 px-4 md:px-0 custom-font">
                 <div className="lg:flex lg:justify-between block gap-8">
-                    <a href="" className="lg:w-[20%]"><img src="/Logo-white.png" alt="logo" className='h-14 md:h-10'/>
+                    <a href="" className="lg:w-[20%]"><img src="/Logo-white.png" alt="logo" className='h-14 md:h-20'/>
                     </a>
                     <div className="text-white rounded-lg p-5 lg:p-0 mt-2 lg:mt-0 lg:w-[20%]">
                         <h3 className="capitalize">Về chúng tôi</h3>
