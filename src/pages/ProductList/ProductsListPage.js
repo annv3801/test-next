@@ -8,7 +8,7 @@ export default function ProductsListPage() {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(30);
-    const [sortOption, setSortOption] = useState('desc');
+    const [sortOption, setSortOption] = useState('asc');
     const [searchValue, setSearchValue] = useState(''); // Add searchValue state
     const [inputValue, setInputValue] = useState(''); // Add inputValue state to track input field
     const [isExpanded, setIsExpanded] = useState(true);

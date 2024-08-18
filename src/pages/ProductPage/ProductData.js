@@ -164,7 +164,7 @@ export default function ProductData({slug}) {
     };
 
     return (
-        <div>
+        <div className="section-bg border-t-[1px]">
             <h1 className="text-[0px]">{product?.name}</h1>
             <div className="container mx-auto lg:my-7">
                 {/*Top*/}
@@ -188,7 +188,7 @@ export default function ProductData({slug}) {
                                         alt={`Product image ${index + 1}`}
                                         layout="fill"
                                         objectFit="cover"
-                                        className="object-cover lg:rounded-lg"
+                                        className="object-cover lg:rounded-3xl"
                                     />
                                 </div>
                             ))}
@@ -221,9 +221,9 @@ export default function ProductData({slug}) {
                         </div>
                     </div>
                     <div className="lg:w-[45%] m-5 lg:m-0">
-                        <h1 className="text-2xl font-extrabold uppercase">{product?.name}</h1>
+                        <h1 className="lg:text-3xl text-2xl font-extrabold uppercase">{product?.name}</h1>
                         {product?.dutyFrom != null ?
-                            <div className='text-base font-bold py-2'>
+                            <div className='lg:text-xl text-base font-bold py-2'>
                                 {`(Duty sân bay ${product?.dutyFrom})`}
                             </div> : ""
                         }
@@ -315,7 +315,7 @@ export default function ProductData({slug}) {
             </div>
             <div className="container mx-auto pt-5">
                 <div className="heading text-center">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Thông tin</h2>
+                    <h2 className="py-4 md:py-7 text-2xl md:text-[36px] font-bold capitalize inline-block relative bg-white px-5 md:px-10">Thông tin</h2>
                 </div>
                 <div className="grid grid-cols-2 px-4 md:grid-cols-3 gap-10">
                     {product?.productAttributes?.filter(attr => attr.attributeValue && attr.attributeValue.trim() !== "").map((attr) => (
@@ -329,7 +329,7 @@ export default function ProductData({slug}) {
                     ))}
                 </div>
                 <div className="heading text-center mt-10">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Chi tiết</h2>
+                    <h2 className="py-4 md:py-7 text-2xl md:text-[36px] font-bold capitalize inline-block relative bg-white px-5 md:px-10">Chi tiết</h2>
                 </div>
                 <div className="px-4" dangerouslySetInnerHTML={{__html: product?.description}}></div>
             </div>
@@ -340,9 +340,9 @@ export default function ProductData({slug}) {
                 {product?.enjoy == null ? "" : (
                     <div>
                         <div className="heading text-center">
-                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">TASTING NOTES</h2>
+                            <h2 className="py-4 md:py-6 text-xl md:text-[36px] font-bold capitalize inline-block relative bg-white px-5 md:px-10">Tasting Notes</h2>
                         </div>
-                        <div className="pt-5 mx-3 md:mx-0" id="tasting" dangerouslySetInnerHTML={{__html: product?.enjoy}}></div>
+                        <div className="pt-6 mx-3 md:mx-0 pb-5" id="tasting" dangerouslySetInnerHTML={{__html: product?.enjoy}}></div>
                     </div>
                 )}
 
@@ -401,10 +401,10 @@ export default function ProductData({slug}) {
                 {/*</div>*/}
             </div>
             {product && product?.relatedProduct && product?.relatedProduct?.length > 0 ? (
-                <div className="bg-[#edf0f3] py-5">
+                <div className="section-bg section-bg-background py-5">
                     <div className="container mx-auto">
                         <div className="heading text-center">
-                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">Sản phẩm liên quan</h2>
+                            <h2 className="py-4 md:py-5 text-xl md:text-[36px] font-bold capitalize inline-block relative bg-[#edf0f3] px-5 md:px-10">Sản phẩm liên quan</h2>
                         </div>
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5 px-2 md:px-0 pb-5">
                             {product?.relatedProduct?.map((product) => (
@@ -427,10 +427,10 @@ export default function ProductData({slug}) {
                 </div>
             ) : ''}
             {matchingProducts.length > 0 ? (
-                <div className="bg-white py-5">
+                <div className="section-bg py-5">
                     <div className="container mx-auto">
                         <div className="heading text-center">
-                            <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10">Sản phẩm đã xem</h2>
+                            <h2 className="py-4 md:py-5 text-xl md:text-[36px] font-bold capitalize inline-block relative bg-white px-5 md:px-10">Sản phẩm đã xem</h2>
                         </div>
                         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5 px-2 md:px-0 pb-5">
                             {matchingProducts?.map((product) => (
