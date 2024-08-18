@@ -174,6 +174,20 @@ export default function Header({configData}) {
         fetchMenuItems();
     }, []);
 
+    const toggleDropdown = (event) => {
+        event.stopPropagation();
+        setDropdownOpen(prev => !prev);
+    };
+
+    const handleMobileClick = (event) => {
+        if (isMobile()) {
+            event.preventDefault();
+            toggleDropdown(event);
+        } else {
+            toggleDropdown(event);
+        }
+    };
+
     return (
         <header ref={node} className={`bg-white font-[sans-serif] sticky top-0 z-50 ${isScrolled ? 'border-b border-gray-200 shadow-md' : ''}`}>
             {
@@ -207,7 +221,7 @@ export default function Header({configData}) {
                                                         className={hasSubMenuItems ? 'group max-lg:border-b max-lg:py-2 relative' : 'max-lg:border-b max-lg:pb-2 pt-4 md:pt-0'}
                                                     >
                                                         {hasSubMenuItems ? (
-                                                            <div onClick={isMobile() ? toggleMenu : undefined} className='hover:text-[#007bff] hover:fill-[#007bff] text-gray-600 font-semibold text-[15px] block'>
+                                                            <div onClick={handleMobileClick} className='hover:text-[#007bff] hover:fill-[#007bff] text-gray-600 font-semibold text-[15px] block'>
                                                                 {topLevelItem.name}
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" className="ml-1 inline-block" viewBox="0 0 24 24">
                                                                     <path d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z" data-name="16" data-original="#000000"/>
