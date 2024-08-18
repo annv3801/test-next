@@ -203,7 +203,7 @@ export default function Header({configData}) {
                     </Link>
                     <div className={`bg-white flex flex-col rounded-3xl relative z-20 my-auto lg:block ${isMenuOpen ? '' : 'hidden'}`}>
                         <div className='flex flex-wrap justify-center px-10 lg:py-3 relative z-10'>
-                            <ul className={`lg:flex z-50 lg:translate-x-0 lg:relative lg:w-auto lg:overflow-visible lg:bg-transparent lg:space-y-0 max-lg:space-y-3 px-5 py-6 h-fit rounded-b-2xl md:px-0 md:py-0 fixed inset-y-0 left-0 w-full transform transition-transform duration-200 ease-in-out bg-white overflow-auto`}>
+                            <ul className={`lg:flex z-50 lg:translate-x-0 lg:relative lg:w-auto lg:overflow-visible lg:bg-transparent lg:space-y-0 max-lg:space-y-3 px-5 py-6 h-auto rounded-b-2xl md:px-0 md:py-0 fixed inset-y-0 left-0 w-full transform transition-transform duration-200 ease-in-out bg-white overflow-auto`}>
                                 <Link href="/" className="my-auto md:hidden"><img src="/icon/Screenshot_5.png" alt="logo"
                                                                                   className='h-10 '/></Link>
                                 <div
