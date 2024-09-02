@@ -4,8 +4,8 @@ const Footer = ({configData}) => {
     return (
         <div className="bg-[#edf0f3]">
             <div className="container mx-auto py-6 md:py-10 px-4 md:px-0 custom-font">
-                <a href=""><img src="/icon/Screenshot_5.png" alt="logo"
-                                className='h-6 md:h-10'/>
+                <a href=""><img src="/1.png" alt="logo"
+                                className='h-10'/>
                 </a>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-[#e9e9e9] rounded-lg p-5">

@@ -216,8 +216,8 @@ export default function Header({configData}) {
             }
             <div className="bg-[#0090d0]">
                 <div className='flex lg:justify-between relative py-3 sm:px-10 px-4 border-gray-200 min-h-[75px] container mx-auto'>
-                    <Link href="/" className="my-auto w-[180px]"><img src="/icon/Screenshot_5.png" alt="logo"
-                                                                      className='h-10 '/>
+                    <Link href="/" className="my-auto w-[180px]"><img src="/11.png" alt="logo"
+                                                                      className='h-11 my-auto'/>
                     </Link>
                     <div className='bg-white flex flex-col rounded-3xl max-lg:hidden relative z-20'>
                         <div className="flex my-auto">
@@ -285,8 +285,8 @@ export default function Header({configData}) {
             </div>
             <div className='flex flex-wrap justify-center px-10 lg:py-3 relative z-10'>
                 <ul className={`lg:flex z-50 lg:translate-x-0 lg:relative lg:w-auto lg:overflow-visible lg:bg-transparent lg:space-y-0 max-lg:space-y-3 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} px-5 py-6 md:px-0 md:py-0 fixed inset-y-0 left-0 w-4/5 transform transition-transform duration-200 ease-in-out bg-white h-full overflow-auto`}>
-                    <Link href="/" className="my-auto md:hidden"><img src="/icon/Screenshot_5.png" alt="logo"
-                                                                      className='h-10 '/></Link>
+                    <Link href="/" className="my-auto md:hidden"><img src="/1.png" alt="logo"
+                                                                      className='h-10 my-auto'/></Link>
                     <div
                         className="overflow-y-auto md:overflow-y-visible max-h-[85%] md:max-h-none lg:flex lg:space-y-0 gap-10 max-lg:space-y-3">
                         {
