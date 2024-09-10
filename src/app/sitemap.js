@@ -8,6 +8,7 @@ export default async function sitemap() {
     }))
     return [
         ...productEntries,
-        'https://ruoudutysanbay.com'
+        { url: 'https://ruoudutysanbay.com' },
+        { url: 'https://ruoudutysanbay.com/san-pham-moi' },
     ]
 }
