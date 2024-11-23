@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = ({configData}) => {
     return (
-        <div className="bg-[#edf0f3]">
+        <div className="">
             <div className="container mx-auto py-6 md:py-10 px-4 md:px-0 custom-font">
                 <a href=""><img src="/1.png" alt="logo"
                                 className='h-10'/>

@@ -2,7 +2,7 @@
 import React from "react";
 import {Carousel} from "antd";
 
-export default function ProductCarousel({products}) {
+export default function ProductNewest({products}) {
     const CarouselSettings = {
         infinite: true,
         slidesToShow: Math.min(5, products.length),

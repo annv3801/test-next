@@ -1,15 +1,20 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import ProductCarousel from "@/components/ProductCarousel";
+import ProductNewest from "@/components/ProductNewest";
 
 async function getData() {
     try {
-        const res = await axios.post('https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-List-Products-Best-Selling', {
+        const res = await axios.post('https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-List-Products', {
                 pageSize: 10,
                 currentPage: 1,
                 searchByFields: [],
-                sortByFields: [],
+                sortByFields: [
+                    {
+                        "colName": "createdTime",
+                        "sortDirection": "desc"
+                    }
+                ],
             },
             {
                 headers: {
@@ -23,7 +28,7 @@ async function getData() {
     }
 }
 
-export default function HomeBestSelling() {
+export default function HomeProductNewest() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -36,13 +41,13 @@ export default function HomeBestSelling() {
     }, []);
 
     return (
-        <div className="relative pb-5">
+        <div className="relative bg-[#edf0f3] pb-5">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative w-full">
                 <div className="heading text-center">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-white px-5 md:px-10 z-10">Sản phẩm bán chạy</h2>
+                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10 z-10">Sản phẩm mới nhất</h2>
                 </div>
                 <div className="w-full">
-                    <ProductCarousel products={products}></ProductCarousel>
+                    <ProductNewest products={products}></ProductNewest>
                 </div>
             </div>
         </div>

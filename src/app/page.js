@@ -3,6 +3,7 @@ import HomeIntroduce from "@/pages/HomePage/HomeIntroduce";
 import HomeBestSelling from "@/pages/HomePage/HomeBestSelling";
 import HomeNews from "@/pages/HomePage/HomeNews";
 import HomeBrand from "@/pages/HomePage/HomeBrand";
+import HomeProductNewest from "@/pages/HomePage/HomeProductNewest";
 
 export async function generateMetadata() {
     return {
@@ -49,6 +50,7 @@ export default async function Home() {
         <Carousel></Carousel>
         <HomeIntroduce></HomeIntroduce>
         <HomeBestSelling></HomeBestSelling>
+        <HomeProductNewest></HomeProductNewest>
         <HomeNews></HomeNews>
         <HomeBrand></HomeBrand>
     </div>
