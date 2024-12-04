@@ -40,7 +40,7 @@ export default function ProductNewest({products}) {
                     <div key={index}>
                         <a href={`/product/${_?.slug}`} className="bg-white flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out mx-1 md:mx-3">
                             <img className="rounded-xl" src={`${_?.productImages[0]?.image}?height=700`} alt=""/>
-                            <div style={{minHeight: '8rem'}}>
+                            <div style={{minHeight: '9.5rem'}}>
                                 <h1 className="mt-3 text-lg lg:text-lg font-bold text-center line-clamp-2 capitalize">{`${_?.name}`}</h1>
                                 {_?.dutyFrom != null ? <div className='text-base font-bold pb-2 text-center'>{`(Duty sân bay ${_?.dutyFrom})`}</div> : ""}
                                 <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-600">
