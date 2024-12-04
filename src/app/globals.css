@@ -170,12 +170,14 @@ p {margin:0}
     }
 }
 
-.slider-container .ant-carousel .slick-prev,
-.slider-container .ant-carousel .slick-next {
-    display: block !important;
-    color: black !important;
-    top: 40% !important;
-    transform: translateY(-50%) !important;
+@media (min-width: 480px) {
+    .slider-container .ant-carousel .slick-prev,
+    .slider-container .ant-carousel .slick-next {
+        display: block !important;
+        color: black !important;
+        top: 40% !important;
+        transform: translateY(-50%) !important;
+    }
 }
 
 @keyframes spin {
