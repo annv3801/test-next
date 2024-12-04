@@ -60,7 +60,8 @@ export default function HomeNews() {
                 settings: {
                     slidesToShow: Math.min(1, news.length),
                     slidesToScroll: 1,
-                }
+                },
+                arrows: false,
             }
         ]
     };

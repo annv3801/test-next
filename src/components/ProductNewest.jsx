@@ -28,7 +28,8 @@ export default function ProductNewest({products}) {
                 settings: {
                     slidesToShow: Math.min(2, products.length),
                     slidesToScroll: 1,
-                }
+                },
+                arrows: false,
             }
         ]
     };
