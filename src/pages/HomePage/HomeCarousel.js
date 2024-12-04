@@ -48,7 +48,7 @@ export default function HomeCarousel() {
         <Carousel autoplay>
             {data.map((s) => {
                 return (
-                    <img src={`https://api.ruoudutysanbay.com/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
+                    <img src={`https://api.ruoudutysanbay.com/Uploads/${s.image}?height=${windowDimensions.height}&width=${windowDimensions.width}`} width={windowDimensions.width} height={windowDimensions.height} className="lg:h-full object-cover" alt={s.name} key={s.id} title={s.name}/>
                 );
             })}
         </Carousel>
