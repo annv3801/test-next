@@ -164,10 +164,8 @@ p {margin:0}
 }
 
 @media (max-width: 480px) {
-    .slick-prev  {
-        display: none !important;
-    }
-    .slick-next  {
+    .slider-container .ant-carousel .slick-prev,
+    .slider-container .ant-carousel .slick-next {
         display: none !important;
     }
 }
