@@ -52,7 +52,7 @@ export default async function Category(params) {
     }
     return (
         <div>
-            <CategoryImage slug={params.params.slug}></CategoryImage>
+            {/*<CategoryImage slug={params.params.slug}></CategoryImage>*/}
             <CategoryProduct slug={params.params.slug}></CategoryProduct>
         </div>
     );
