@@ -1,114 +1,145 @@
 'use client'
 import axios from "axios";
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, {useEffect, useState, useMemo, useCallback, useTransition} from "react";
 import CustomPagination from "@/components/Pagination";
 import CustomSelect from "@/components/Select";
+import Image from "next/image";
+import Link from "next/link";
+import debounce from 'lodash/debounce';
 
 // Create axios instance with default config
 const api = axios.create({
-    baseURL: 'https://api.ruoudutysanbay.com',
-    timeout: 5000
+    baseURL: 'https://api.ruoudutysanbay.com/LiquorExchange',
+    headers: {
+        'Cache-Control': 'max-age=3600',
+    }
 });
 
-// Separate ProductCard component for better rendering performance
-const ProductCard = React.memo(({ product }) => {
-    const formattedPrice = useMemo(() => {
-        const price = product?.promotionPrice == 0 || product?.promotionPrice == null
-            ? product?.price
-            : product?.promotionPrice;
-        return price !== 0 ? Intl.NumberFormat('de-DE').format(price) + 'đ' : "Liên hệ";
-    }, [product?.price, product?.promotionPrice]);
+const DEBOUNCE_DELAY = 300;
+const PAGE_SIZE = 30;
 
-    return (
-        <a
-            href={`/product/${product?.slug}`}
-            className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out"
-        >
-            <img
-                className="rounded-xl"
-                src={product?.productImages[0]?.image}
-                alt={product?.name}
-                title={product?.name}
-                loading="lazy"
-            />
-            <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">
-                {product?.name}
-            </div>
-            {product?.dutyFrom && (
-                <div className='text-base font-bold pb-2 text-center'>
-                    {`(Duty sân bay ${product?.dutyFrom})`}
-                </div>
-            )}
-            <div className="flex justify-center text-xs lg:text-sm gap-1 mx-auto text-center text-gray-500 mb-3">
-                <div>{product?.bottle}ml</div>
-                <div>/</div>
-                <div>{product?.alcoholPercentage}%</div>
-            </div>
-            <div className="text-sm lg:text-base text-center font-bold mt-auto pb-0.5">
-                {formattedPrice}
-            </div>
-        </a>
-    );
-});
+export default function CategoryProduct({slug, initialData = null}) {
+    const [products, setProducts] = useState(initialData?.products || []);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [total, setTotal] = useState(initialData?.total || 30);
+    const [sortOption, setSortOption] = useState('asc');
+    const [isLoading, setIsLoading] = useState(!initialData);
+    const [error, setError] = useState(null);
+    const [isPending, startTransition] = useTransition();
 
-ProductCard.displayName = 'ProductCard';
+    // Pre-calculate the request payload
+    const getRequestPayload = useCallback((page, sort) => ({
+        pageSize: PAGE_SIZE,
+        currentPage: page,
+        searchByFields: [],
+        sortByFields: [{
+            "colName": "price",
+            "sortDirection": sort
+        }]
+    }), []);
 
-export default function CategoryProduct({slug}) {
-    const [state, setState] = useState({
-        products: [],
-        currentPage: 1,
-        total: 30,
-        sortOption: 'asc',
-        isLoading: true
-    });
-    const pageSize = 30;
-
+    // Optimized fetch function with caching and error handling
     const fetchProducts = useCallback(async () => {
-        setState(prev => ({ ...prev, isLoading: true }));
+        // Create cache key
+        const cacheKey = `products-${slug}-${currentPage}-${sortOption}`;
+
+        // Check session storage first
+        const cachedData = sessionStorage.getItem(cacheKey);
+        if (cachedData) {
+            const parsed = JSON.parse(cachedData);
+            setProducts(parsed.data);
+            setTotal(parsed.total);
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            const response = await api.post(`/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`, {
-                pageSize,
-                currentPage: state.currentPage,
-                searchByFields: [],
-                sortByFields: [{
-                    colName: "price",
-                    sortDirection: state.sortOption
-                }]
+            setIsLoading(true);
+            const response = await api.post(
+                `/Category/Get-Product-Category-By-Slug/${slug}`,
+                getRequestPayload(currentPage, sortOption)
+            );
+
+            const responseData = response.data?.data;
+
+            // Store in session storage
+            sessionStorage.setItem(cacheKey, JSON.stringify({
+                data: responseData.data,
+                total: responseData.total
+            }));
+
+            startTransition(() => {
+                setProducts(responseData.data || []);
+                setTotal(responseData.total || 0);
             });
 
-            setState(prev => ({
-                ...prev,
-                products: response.data?.data.data || [],
-                total: response.data?.data.total || 0,
-                isLoading: false
-            }));
+            setError(null);
         } catch (error) {
-            console.error('Failed to fetch products:', error);
-            setState(prev => ({ ...prev, isLoading: false }));
+            console.error('Error fetching products:', error);
+            setError('Failed to load products. Please try again later.');
+        } finally {
+            setIsLoading(false);
         }
-    }, [slug, state.currentPage, state.sortOption]);
+    }, [slug, currentPage, sortOption, getRequestPayload]);
+
+    // Optimized debounced sort
+    const debouncedSort = useMemo(
+        () => debounce((value) => {
+            startTransition(() => {
+                setSortOption(value);
+            });
+        }, DEBOUNCE_DELAY),
+        []
+    );
 
     useEffect(() => {
-        fetchProducts();
-    }, [fetchProducts]);
+        // Only fetch data if we don't have initialData or if sorting/pagination has changed
+        if (!initialData || currentPage > 1 || sortOption !== 'asc') {
+            fetchProducts();
+        }
+
+        // Prefetch next page
+        const prefetchNextPage = async () => {
+            if (currentPage * PAGE_SIZE < total) {
+                const nextPageKey = `products-${slug}-${currentPage + 1}-${sortOption}`;
+                if (!sessionStorage.getItem(nextPageKey)) {
+                    try {
+                        const response = await api.post(
+                            `/Category/Get-Product-Category-By-Slug/${slug}`,
+                            getRequestPayload(currentPage + 1, sortOption)
+                        );
+                        sessionStorage.setItem(nextPageKey, JSON.stringify({
+                            data: response.data?.data.data,
+                            total: response.data?.data.total
+                        }));
+                    } catch (error) {
+                        console.error('Error prefetching next page:', error);
+                    }
+                }
+            }
+        };
+
+        // Only prefetch if we're already displaying data
+        if (!isLoading) {
+            prefetchNextPage();
+        }
+    }, [fetchProducts, currentPage, total, slug, sortOption, getRequestPayload, initialData, isLoading]);
 
     const handlePageChange = useCallback((page) => {
-        setState(prev => ({ ...prev, currentPage: page }));
-    }, []);
-
-    const handleSortChange = useCallback((value) => {
-        setState(prev => ({ ...prev, sortOption: value, currentPage: 1 }));
+        startTransition(() => {
+            setCurrentPage(page);
+        });
     }, []);
 
     const displayText = useMemo(() => {
-        if (state.total > state.currentPage * pageSize) {
-            return `Hiển thị ${state.currentPage * pageSize} sản phẩm | ${state.total} sản phẩm`;
+        if (total > currentPage * PAGE_SIZE) {
+            return `Hiển thị ${currentPage * PAGE_SIZE} sản phẩm | ${total} sản phẩm`;
         }
-        return `Hiển thị tất cả ${state.total} sản phẩm`;
-    }, [state.total, state.currentPage, pageSize]);
+        return `Hiển thị tất cả ${total} sản phẩm`;
+    }, [total, currentPage]);
 
-    if (state.isLoading) {
-        return <div className="container mx-auto px-3 py-5">Đang tải...</div>;
+    if (error) {
+        return <div className="text-center text-red-500 py-5">{error}</div>;
     }
 
     return (
@@ -117,32 +148,52 @@ export default function CategoryProduct({slug}) {
                 <div className="flex justify-between mb-3">
                     <CustomSelect
                         defaultValue="asc"
-                        onChange={handleSortChange}
+                        onChange={debouncedSort}
                         options={[
                             { value: 'asc', label: 'Giá tăng dần' },
                             { value: 'desc', label: 'Giá giảm dần' },
                         ]}
                     />
-                    <div className="px-5 text-right my-auto">
-                        {displayText}
-                    </div>
+                    <div className="px-5 text-right my-auto">{displayText}</div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-5">
-                    {state.products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+                    {(isLoading || isPending) ? (
+                        Array.from({ length: PAGE_SIZE }).map((_, index) => (
+                            <div key={`skeleton-${index}`} className="animate-pulse bg-gray-200 rounded-xl h-64"></div>
+                        ))
+                    ) : (
+                        products.map((product) => (
+                            <Link
+                                href={`/product/${product?.slug}`}
+                                key={product.id || product.slug}
+                                className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out"
+                            >
+                                <div className="relative aspect-square w-full">
+                                    <Image
+                                        src={product?.productImages[0]?.image}
+                                        alt={product?.name}
+                                        title={product?.name}
+                                        fill
+                                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                                        className="rounded-xl object-cover"
+                                        loading="lazy"
+                                        placeholder="blur"
+                                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4dHRoaHx4dHh4eHh4eHh4dHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/2wBDABUREhwYHBoXFxobHRsdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                                    />
+                                </div>
+                                <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">{product?.name}</div>
+                            </Link>
+                        ))
+                    )}
                 </div>
-
-                {state.total > pageSize && (
-                    <div className="text-right">
-                        <CustomPagination
-                            currentPage={state.currentPage}
-                            total={state.total}
-                            pageSize={pageSize}
-                            handlePageChange={handlePageChange}
-                        />
-                    </div>
+                {total > PAGE_SIZE && (
+                    <CustomPagination
+                        currentPage={currentPage}
+                        total={total}
+                        pageSize={PAGE_SIZE}
+                        handlePageChange={handlePageChange}
+                    />
                 )}
             </div>
         </div>

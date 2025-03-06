@@ -3,9 +3,8 @@ import CategoryProduct from "@/pages/CategoryPage/CategoryProduct";
 import axios from "axios";
 import NewsCategory from "@/pages/NewsPage/NewsCategory";
 
-async function getData(params) {
+async function getCategory(slug) {
     try {
-        const slug = params.params.slug;
         const response = await axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/Category/Get-Category-By-Slug/${slug}`, {
             headers: {
                 'Accept': 'text/plain',
@@ -13,9 +12,37 @@ async function getData(params) {
         });
 
         return response?.data?.data;
-    } catch (error) {
-        // This will activate the closest `error.js` Error Boundary
+    }
+    catch (error) {
         throw new Error(`There was an error retrieving the data: ${error}`);
+    }
+}
+
+async function getProducts(slug) {
+    try {
+        const response = await axios.post(
+            `https://api.ruoudutysanbay.com/LiquorExchange/Category/Get-Product-Category-By-Slug/${slug}`,
+            {
+                pageSize: 30,
+                currentPage: 1,
+                searchByFields: [],
+                sortByFields: [{
+                    "colName": "price",
+                    "sortDirection": "asc"
+                }]
+            },
+            {
+                headers: {
+                    'Accept': 'text/plain',
+                }
+            }
+        );
+
+        return response?.data?.data;
+    }
+    catch (error) {
+        console.error("Error fetching products:", error);
+        return { data: [], total: 0 };
     }
 }
 
@@ -29,7 +56,7 @@ export async function generateMetadata(params) {
         description = 'Chuyên mua bán rượu - Tin tức';
         images = 'https://api.ruoudutysanbay.com/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
     } else {
-        data = await getData(params);
+        data = await getCategory(params.params.slug);
         title = `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
         description = `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
         images = data ? `https://api.ruoudutysanbay.com/Uploads/${data?.image != null ? data?.image : ""}?width=1920&height=700` : '';
@@ -48,12 +75,22 @@ export async function generateMetadata(params) {
 
 export default async function Category(params) {
     if (params.params.slug === 'tin-tuc') {
-        return <NewsCategory />; // Render the News component if slug is 'tin-tuc'
+        return <NewsCategory />;
     }
+
+    // Fetch initial products data on the server
+    const productsData = await getProducts(params.params.slug);
+
     return (
         <div>
             {/*<CategoryImage slug={params.params.slug}></CategoryImage>*/}
-            <CategoryProduct slug={params.params.slug}></CategoryProduct>
+            <CategoryProduct
+                slug={params.params.slug}
+                initialData={{
+                    products: productsData.data,
+                    total: productsData.total
+                }}
+            />
         </div>
     );
 }
