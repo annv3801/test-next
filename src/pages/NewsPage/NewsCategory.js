@@ -53,7 +53,7 @@ export default function NewsCategory() {
                         {products.map((product) => (
                             <Link href={`/tin-tuc/${product?.slug}`} className="flex gap-5 hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                                 <div className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
-                                    <img className="rounded-xl" src={`https://api.ruoudutysanbay.com/Uploads/${product?.image}?height=250&width=400`} alt={product.name} title={product.name}/>
+                                    <img loading="lazy" className="rounded-xl" src={`https://api.ruoudutysanbay.com/Uploads/${product?.image}?height=250&width=400`} alt={product.name} title={product.name}/>
                                 </div>
                                 <div className="my-auto">
                                     <div className="mt-3 text-base lg:text-lg font-bold text-center">{product?.name}</div>

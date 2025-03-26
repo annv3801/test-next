@@ -90,7 +90,7 @@ export default function HomeBrand() {
                                         href={`/category/${item.category.slug}`}
                                         className="border-2 border-blue-400 rounded-lg items-center flex justify-center h-[120px] bg-white"
                                     >
-                                        <img
+                                        <img loading="lazy"
                                             src={`https://api.ruoudutysanbay.com/Uploads/${item.image}?height=800`}
                                             alt={item.category.slug}
                                             title={item.category.slug}

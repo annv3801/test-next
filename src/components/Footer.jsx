@@ -4,7 +4,7 @@ const Footer = ({configData}) => {
     return (
         <div className="">
             <div className="container mx-auto py-6 md:py-10 px-4 md:px-0 custom-font">
-                <a href=""><img src="/1.png" alt="logo"
+                <a href=""><img loading="lazy" src="/1.png" alt="logo"
                                 className='h-10'/>
                 </a>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">

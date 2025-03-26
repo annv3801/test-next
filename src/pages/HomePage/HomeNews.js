@@ -84,7 +84,7 @@ export default function HomeNews() {
 
                                 return (
                                     <a href={`/tin-tuc/${newsItem.slug}`} className="bg-white px-2 py-2 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out gap-3">
-                                        <img className="rounded-xl" src={`https://api.ruoudutysanbay.com/Uploads/${newsItem.image}?height=300&width=500`} alt={newsItem.name} title={newsItem.name}/>
+                                        <img loading="lazy" className="rounded-xl" src={`https://api.ruoudutysanbay.com/Uploads/${newsItem.image}?height=300&width=500`} alt={newsItem.name} title={newsItem.name}/>
                                         <h3 className="mt-3 text-base lg:text-lg font-bold text-center line-clamp-2">{newsItem.name}</h3>
                                         <div className="my-2 text-center text-sm text-gray-500">{formattedDate}</div>
                                     </a>

@@ -25,7 +25,7 @@ export default function CategoryImage({slug}) {
         <div>
             {category.image != null && category.image != "" ? (
                 <div>
-                    <img src={`https://api.ruoudutysanbay.com/Uploads/${category.image}?width=1920&height=700`} className="w-full h-[200px] md:h-[700px] object-cover" alt={category.name} title={category.name}/>
+                    <img loading="lazy" src={`https://api.ruoudutysanbay.com/Uploads/${category.image}?width=1920&height=700`} className="w-full h-[200px] md:h-[700px] object-cover" alt={category.name} title={category.name}/>
                 </div>
             ) : ''}
         </div>
