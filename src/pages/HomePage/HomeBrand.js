@@ -96,10 +96,7 @@ export default function HomeBrand() {
                                             title={item.category.slug}
                                             className="mx-auto py-3"
                                             style={{
-                                                minWidth: '141px',
-                                                maxWidth: '145px',
-                                                minHeight: '77.83px',
-                                                maxHeight: '106.03px',
+                                                height: '110px',
                                                 objectFit: 'contain'
                                             }}
                                         />
