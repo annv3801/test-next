@@ -28,6 +28,7 @@ export default async function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet"/>
         <link rel="preload" href="https://api.ruoudutysanbay.com/Uploads/99c8a4c2-4b07-4996-bb24-b166918e7963.webp?height=700&width=1920" as="image" crossOrigin="anonymous"/>
+        <link rel="canonical" href="https://ruoudutysanbay.com/" />
     </head>
     <body>
     <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-DFR575JZTN`}/>

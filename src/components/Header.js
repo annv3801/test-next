@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 
 function CustomLink({ to, onClick, customUrl, children, isActive, ...rest }) {
-    const path = customUrl ? customUrl : (to === '/trang-chu'? '/' : `/category${to}`);
+    const path = customUrl ? customUrl : (to === '/trang-chu'? '/' : `/danh-muc${to}`);
     return (
         <Link href={path} onClick={onClick} {...rest} className={`hover:text-[#007bff] text-gray-600 font-semibold text-[15px] block ${isActive ? 'active-link' : 'inactive-link'}`}>
             {children}
@@ -239,7 +239,7 @@ export default function Header({configData}) {
                         {isDropdownVisible && searchValue.trim() !== "" && (
                             <div className="dropdown-list absolute w-full lg:min-w-[600px] left-0 mt-14 bg-white shadow-lg rounded-md text-left flex flex-col">
                                 {items.map((item, index) => (
-                                    <Link href={`/product/${item.slug}`}
+                                    <Link href={`/san-pham/${item.slug}`}
                                           className={`dropdown-item p-2 h-full hover:bg-blue-200 ${index === 0 ? 'rounded-t-md' : ''} ${index === items.length - 1 ? 'rounded-b-md' : ''}`}
                                           key={index}>
                                         <div className="flex gap-3">

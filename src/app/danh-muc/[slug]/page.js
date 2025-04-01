@@ -46,6 +46,10 @@ async function getProducts(slug) {
     }
 }
 
+function capitalizeWords(str) {
+    return str.replace(/\b\w/g, char => char.toUpperCase());
+}
+
 export async function generateMetadata(params) {
     let data;
     let title;
@@ -53,12 +57,13 @@ export async function generateMetadata(params) {
     let images;
     if (params.params.slug === 'tin-tuc') {
         title = 'Rượu Duty Sân Bay - Tin tức';
-        description = 'Chuyên mua bán rượu - Tin tức';
+        description = 'Rượu Duty Sân Bay - Tin tức';
         images = 'https://api.ruoudutysanbay.com/Resources/d9653e9c-a9d3-4b51-95eb-690c682f17d0.jpg';
     } else {
         data = await getCategory(params.params.slug);
-        title = `Rượu Duty Sân Bay - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
-        description = `Chuyên mua bán rượu - ${data?.name != null ? data?.name.toUpperCase() : ""}`;
+        const categoryName = data?.name ? capitalizeWords(data.name) : "";
+        title = `Rượu ${categoryName} - Rượu Duty Sân Bay`;
+        description = `Rượu Duty Sân Bay - chuyên bán rượu ${categoryName}`;
         images = data ? `https://api.ruoudutysanbay.com/Uploads/${data?.image != null ? data?.image : ""}?width=1920&height=700` : '';
     }
     return {

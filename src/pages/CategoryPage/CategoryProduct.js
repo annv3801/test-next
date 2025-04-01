@@ -82,7 +82,7 @@ export default function CategoryProduct({slug}) {
 
                 <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-5">
                     {products.map((product) => (
-                        <a href={`/product/${product?.slug}`} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
+                        <a href={`/san-pham/${product?.slug}`} className="bg-white px-1 py-1 md:px-3 md:py-3 flex flex-col rounded-xl hover:border-blue-500 hover:text-blue-500 duration-200 ease-in-out">
                             <img loading="lazy" className="rounded-xl" src={product?.productImages[0]?.image} alt={product?.name} title={product?.name}/>
                             <div className="mt-3 text-base lg:text-lg font-bold text-center capitalize">{product?.name}</div>
                             {product?.dutyFrom != null ? <div className='text-base font-bold pb-2 text-center'>{`(Duty sân bay ${product?.dutyFrom})`}</div> : ""}

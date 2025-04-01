@@ -89,14 +89,14 @@ export async function generateMetadata(params) {
     const plainTextDescription = stripHtmlTagsAndLimitWords(rawDescription);
 
     return {
-        title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,
+        title: `${data?.name != null ? capitalizedProductName : ""} - Rượu Duty Sân Bay`,
         description: plainTextDescription,
         siteName: "Rượu Duty Sân Bay",
         keywords: keywords.join(", "),
         url: `https://ruoudutysanbay.com/product/${params.params.slug}`,
         type: "website",
         openGraph: {
-            title: `Rượu Duty Sân Bay - ${data?.name != null ? capitalizedProductName : ""}`,
+            title: `${data?.name != null ? capitalizedProductName : ""} - Rượu Duty Sân Bay`,
             description: plainTextDescription,
             url: `https://ruoudutysanbay.com/product/${params.params.slug}`,
             site_name: "Rượu Duty Sân Bay",

@@ -9,7 +9,7 @@ const Footer = ({configData}) => {
                 </a>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3 className="capitalize">Về chúng tôi</h3>
+                        <h4 className="capitalize">Về chúng tôi</h4>
                         <div className="flex mb-3">
                             <a href="/gioi-thieu" className="capitalize text-sm md:text-base my-auto">Giới thiệu</a>
                         </div>
@@ -21,7 +21,7 @@ const Footer = ({configData}) => {
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3 className="capitalize">Thông tin</h3>
+                        <h4 className="capitalize">Thông tin</h4>
                         <div className="flex mb-3">
                             <a href="/thuong-hieu" className="capitalize text-sm md:text-base my-auto">Thương Hiệu</a>
                         </div>
@@ -30,7 +30,7 @@ const Footer = ({configData}) => {
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h3 className="capitalize">Thông Tin Liên hệ</h3>
+                        <h4 className="capitalize">Thông Tin Liên hệ</h4>
                         <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" className="fill-current my-auto" viewBox="0 0 384 512">
                                 <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
@@ -82,7 +82,7 @@ const Footer = ({configData}) => {
             </div>
             <div className="fixed bottom-2 md:bottom-6 right-4 md:right-6 rounded-full flex flex-col items-center justify-center z-20">
                 <a href={`https://zalo.me/${configData?.phoneNumber}`} className="bg-blue-500 rounded-full w-14 h-14 flex items-center justify-center mb-6" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14" viewBox="0 0 161.5 161.5"><title>Zalo logo</title>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14" viewBox="0 0 161.5 161.5">
                         <path d="M504.54,431.79h14.31c19.66,0,31.15,2.89,41.35,8.36a56.65,56.65,0,0,1,23.65,23.65c5.47,10.2,8.36,21.69,8.36,41.35V519.4c0,19.66-2.89,31.15-8.36,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-19.66,0-31.15-2.89-41.35-8.36a56.65,56.65,0,0,1-23.65-23.65c-5.47-10.2-8.36-21.69-8.36-41.35V505.14c0-19.66,2.89-31.15,8.36-41.35a56.65,56.65,0,0,1,23.65-23.65C473.39,434.68,484.94,431.79,504.54,431.79Z" transform="translate(-431.25 -431.25)"
                               style={{fill: '#0068ff'}}/>
                         <path d="M592.21,517v2.35c0,19.66-2.89,31.15-8.35,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-16.09,0-26.7-1.93-35.62-5.63L454.29,572Z" transform="translate(-431.25 -431.25)" style={{fill: '#001a33', opacity: '0.11999999731779099', isolation: 'isolate'}}/>

@@ -44,7 +44,7 @@ export default function HomeProductNewest() {
         <div className="relative bg-[#edf0f3] pb-5">
             <div className="py-3 md:py-5 container mx-auto px-3 md:px-0 z-10 relative w-full">
                 <div className="heading text-center">
-                    <h2 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10 z-10">Sản phẩm mới nhất</h2>
+                    <h3 className="py-4 md:py-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10 z-10">Sản phẩm mới nhất</h3>
                 </div>
                 <div className="w-full">
                     <ProductNewest products={products}></ProductNewest>

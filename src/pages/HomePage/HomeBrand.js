@@ -77,9 +77,9 @@ export default function HomeBrand() {
         <div className="bg-[#edf0f3]">
             <div className="mx-auto container py-5 px-3">
                 <div className="heading text-center">
-                    <h2 className="py-4 md:pt-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">
+                    <h3 className="py-4 md:pt-5 text-xl md:text-3xl font-bold uppercase text-yellow-600 inline-block relative bg-[#edf0f3] px-5 md:px-10">
                         Thương hiệu
-                    </h2>
+                    </h3>
                 </div>
                 <div className="w-full">
                     <div className="slider-container z-18">

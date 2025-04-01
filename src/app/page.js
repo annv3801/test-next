@@ -4,6 +4,7 @@ import HomeBestSelling from "@/pages/HomePage/HomeBestSelling";
 import HomeNews from "@/pages/HomePage/HomeNews";
 import HomeBrand from "@/pages/HomePage/HomeBrand";
 import HomeProductNewest from "@/pages/HomePage/HomeProductNewest";
+import Head from "next/head";
 
 export async function generateMetadata() {
     return {
@@ -45,14 +46,17 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  return (
-    <div>
-        <Carousel></Carousel>
-        <HomeIntroduce></HomeIntroduce>
-        <HomeBestSelling></HomeBestSelling>
-        <HomeProductNewest></HomeProductNewest>
-        <HomeNews></HomeNews>
-        <HomeBrand></HomeBrand>
-    </div>
-  );
+    const canonicalUrl = "https://ruoudutysanbay.com/";
+    return (
+        <>
+            <div>
+                <Carousel></Carousel>
+                <HomeIntroduce></HomeIntroduce>
+                <HomeBestSelling></HomeBestSelling>
+                <HomeProductNewest></HomeProductNewest>
+                <HomeNews></HomeNews>
+                <HomeBrand></HomeBrand>
+            </div>
+        </>
+    );
 }
