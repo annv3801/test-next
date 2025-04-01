@@ -9,7 +9,7 @@ const Footer = ({configData}) => {
                 </a>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h4 className="capitalize">Về chúng tôi</h4>
+                        <h4 className="capitalize text-xl font-semibold">Về chúng tôi</h4>
                         <div className="flex mb-3">
                             <a href="/gioi-thieu" className="capitalize text-sm md:text-base my-auto">Giới thiệu</a>
                         </div>
@@ -21,7 +21,7 @@ const Footer = ({configData}) => {
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h4 className="capitalize">Thông tin</h4>
+                        <h4 className="capitalize text-xl font-semibold">Thông tin</h4>
                         <div className="flex mb-3">
                             <a href="/thuong-hieu" className="capitalize text-sm md:text-base my-auto">Thương Hiệu</a>
                         </div>
@@ -30,7 +30,7 @@ const Footer = ({configData}) => {
                         </div>
                     </div>
                     <div className="bg-[#e9e9e9] rounded-lg p-5">
-                        <h4 className="capitalize">Thông Tin Liên hệ</h4>
+                        <h4 className="capitalize text-xl font-semibold">Thông Tin Liên hệ</h4>
                         <div className="flex gap-2 md:gap-5 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" className="fill-current my-auto" viewBox="0 0 384 512">
                                 <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
