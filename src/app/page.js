@@ -52,8 +52,8 @@ export default async function Home() {
             <div>
                 <Carousel></Carousel>
                 <HomeIntroduce></HomeIntroduce>
-                <HomeBestSelling></HomeBestSelling>
                 <HomeProductNewest></HomeProductNewest>
+                <HomeBestSelling></HomeBestSelling>
                 <HomeNews></HomeNews>
                 <HomeBrand></HomeBrand>
             </div>
