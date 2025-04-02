@@ -46,7 +46,6 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-    const canonicalUrl = "https://ruoudutysanbay.com/";
     return (
         <>
             <div>

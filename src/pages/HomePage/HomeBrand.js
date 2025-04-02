@@ -87,7 +87,7 @@ export default function HomeBrand() {
                             {brand.map((item) => (
                                 <div key={item.category.slug} className="px-2">
                                     <a
-                                        href={`/category/${item.category.slug}`}
+                                        href={`/danh-muc/${item.category.slug}`}
                                         className="border-2 border-blue-400 rounded-lg items-center flex justify-center h-[120px] bg-white"
                                     >
                                         <img loading="lazy"
