@@ -12,12 +12,9 @@ function debounce(func, wait) {
     };
 }
 
-let largeCarousel = null;
-let smallCarousel = null;
-
-export default function ProductData({slug}) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [product, setProduct] = useState({}); // Initialize product as an empty object
+export default function ProductData({slug, initialData}) {
+    const [isLoading, setIsLoading] = useState(!initialData);
+    const [product, setProduct] = useState(initialData || {}); // Use initialData if available
     const [viewedProducts, setViewedProducts] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,32 +22,18 @@ export default function ProductData({slug}) {
     const smallCarouselRef = useRef(null);
 
     useEffect(() => {
-        axios.get(`https://api.ruoudutysanbay.com/LiquorExchange/Product/Get-Product-By-Slug/${slug}`,
-            {
-                headers: {
-                    'Accept': 'text/plain',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((res) => {
-                const productData = res.data?.data;
-                setProduct(productData);
-                addViewedProduct({
-                    name: productData.name,
-                    dutyFrom: productData.dutyFrom,
-                    slug: productData.slug,
-                    image: productData.productImages[0]?.image, // assuming productImages is an array and you want the first image
-                    price: productData.price,
-                    alcoholPercentage: productData.alcoholPercentage,
-                    bottle: productData.bottle,
-                    promotionPrice : productData.promotionPrice
-                });
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                console.error(`There was an error retrieving the data: ${error}`);
-            });
-    }, [slug]);
+        // Only add to viewed products since we already have the data
+        addViewedProduct({
+            name: product.name,
+            dutyFrom: product.dutyFrom,
+            slug: product.slug,
+            image: product.productImages?.[0]?.image,
+            price: product.price,
+            alcoholPercentage: product.alcoholPercentage,
+            bottle: product.bottle,
+            promotionPrice: product.promotionPrice
+        });
+    }, []);
     const addViewedProduct = (product) => {
         setViewedProducts(prevProducts => {
             // Check if the product is already in the list
@@ -257,12 +240,8 @@ export default function ProductData({slug}) {
                         <ProductConfigData></ProductConfigData>
                         <div className="mt-5 flex gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-10 h-10 md:w-7 md:h-7 my-auto">
-                                <defs>
-                                    <style>.fa-secondary{'{opacity: 0.4; fill: #FC8181;}'}</style>
-                                    {/* red-400 */}
-                                </defs>
                                 <path
-                                    className="fa-secondary"
+                                    style={{opacity: 0.4, fill: '#FC8181'}}
                                     d="M140.6 21.2C154.1 7.7 172.4 .1 191.5 .1h129c19.1 0 37.4 7.6 50.9 21.1L490.8 140.6c13.5 13.5 21.1 31.8 21.1 50.9v129c0 19.1-7.6 37.4-21.1 50.9L371.4 490.8c-13.5 13.5-31.8 21.1-50.9 21.1h-129c-19.1 0-37.4-7.6-50.9-21.1L21.2 371.4C7.7 357.9 .1 339.6 .1 320.5v-129c0-19.1 7.6-37.4 21.1-50.9L140.6 21.2zM256 128c-13.3 0-24 10.7-24 24V264c0 13.3 10.7 24 24 24s24-10.7 24-24V152c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
                                 />
                                 <path
@@ -323,7 +302,7 @@ export default function ProductData({slug}) {
                             <div dangerouslySetInnerHTML={{__html: attr.svgIcon}} className="w-11 h-11 my-auto"></div>
                             <div className="flex flex-col my-auto">
                                 <div className='uppercase font-bold'>{attr.name}</div>
-                                <div>{attr.attributeValue}</div>
+                                    <div>{attr.attributeValue}</div>
                             </div>
                         </div>
                     ))}

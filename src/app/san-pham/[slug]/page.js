@@ -127,9 +127,10 @@ export async function generateMetadata(params) {
 }
 
 export default async function Category(params) {
+    const data = await getData(params);
     return (
         <div>
-            <ProductData slug={params.params.slug}></ProductData>
+            <ProductData initialData={data} slug={params.params.slug}></ProductData>
         </div>
     );
 }
